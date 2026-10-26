@@ -1,0 +1,894 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Raphaël Deutou — Data Scientist & AI Engineer</title>
+<meta name="description" content="Portfolio de Raphaël Deutou — Data Science, Machine Learning, Deep Learning, NLP et MLOps. Je transforme la donnée en décisions.">
+<meta property="og:title" content="Raphaël Deutou — Data Scientist & AI Engineer">
+<meta property="og:description" content="Data Science · Machine Learning · NLP · MLOps">
+<meta name="theme-color" content="#05060a">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2305060a'/%3E%3Ctext x='50%25' y='56%25' font-family='monospace' font-size='28' font-weight='700' fill='%2399f6e4' text-anchor='middle' dominant-baseline='middle'%3ERD%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#05060a; --bg2:#0a0c14; --card:rgba(255,255,255,.035); --card-h:rgba(255,255,255,.06);
+  --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.14);
+  --tx:#eef1f7; --mu:#9aa3b5; --dim:#5d6578;
+  --a1:#5eead4; --a2:#818cf8; --a3:#f0abfc; --warn:#fbbf24; --bad:#fb7185; --ok:#4ade80;
+  --grad:linear-gradient(110deg,var(--a1),var(--a2) 50%,var(--a3));
+  --r:20px; --ease:cubic-bezier(.22,1,.36,1);
+  --sans:'Inter Tight',system-ui,sans-serif; --serif:'Instrument Serif',Georgia,serif; --mono:'JetBrains Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--tx);font-family:var(--sans);line-height:1.55;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+::selection{background:var(--a2);color:#fff}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+.mono{font-family:var(--mono)}
+.serif{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.01em}
+.grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ---------- ambient ---------- */
+.noise{position:fixed;inset:0;pointer-events:none;z-index:100;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.glow{position:fixed;width:600px;height:600px;border-radius:50%;pointer-events:none;z-index:0;background:radial-gradient(circle,rgba(129,140,248,.10),transparent 60%);transform:translate(-50%,-50%);transition:opacity .4s;left:-999px;top:-999px}
+.progress{position:fixed;top:0;left:0;height:2px;background:var(--grad);z-index:60;width:0;box-shadow:0 0 12px var(--a2)}
+
+/* ---------- nav ---------- */
+nav{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:50;width:min(1120px,calc(100% - 32px));display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px 10px 18px;border:1px solid var(--line);border-radius:999px;background:rgba(8,10,16,.6);backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%);transition:border-color .3s}
+nav.scrolled{border-color:var(--line2)}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.02em}
+.logo-mark{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;font-family:var(--mono);font-size:12px;background:linear-gradient(135deg,rgba(94,234,212,.25),rgba(129,140,248,.25));border:1px solid var(--line2)}
+.nav-links{display:flex;gap:4px}
+.nav-links a{padding:8px 14px;border-radius:999px;font-size:14px;color:var(--mu);transition:color .2s,background .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--tx);background:rgba(255,255,255,.06)}
+.nav-r{display:flex;gap:8px;align-items:center}
+.kbd-btn{display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;border:1px solid var(--line);font-size:13px;color:var(--mu);transition:.2s}
+.kbd-btn:hover{border-color:var(--line2);color:var(--tx)}
+kbd{font-family:var(--mono);font-size:11px;padding:2px 6px;border-radius:6px;border:1px solid var(--line2);background:rgba(255,255,255,.04)}
+.btn{position:relative;display:inline-flex;align-items:center;gap:10px;padding:12px 20px;border-radius:999px;font-weight:600;font-size:15px;transition:transform .3s var(--ease),box-shadow .3s,background .3s;will-change:transform}
+.btn-p{background:var(--tx);color:#05060a}
+.btn-p:hover{box-shadow:0 0 0 6px rgba(255,255,255,.08),0 10px 40px -10px rgba(129,140,248,.6)}
+.btn-g{border:1px solid var(--line2);background:rgba(255,255,255,.03)}
+.btn-g:hover{background:rgba(255,255,255,.07)}
+.btn-sm{padding:8px 14px;font-size:13px}
+.btn svg{width:16px;height:16px;transition:transform .3s var(--ease)}
+.btn:hover svg{transform:translateX(3px)}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;padding:140px 0 80px;overflow:hidden}
+#net{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+.hero::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 40%,transparent 30%,var(--bg) 85%);pointer-events:none;z-index:1}
+.hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.25fr .9fr;gap:56px;align-items:center;width:100%}
+.pill{display:inline-flex;align-items:center;gap:10px;padding:6px 14px 6px 8px;border-radius:999px;border:1px solid var(--line2);background:rgba(255,255,255,.03);font-size:13px;color:var(--mu);backdrop-filter:blur(6px)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 0 rgba(74,222,128,.6);animation:ping 2s infinite}
+.pill .tag{font-family:var(--mono);font-size:11px;padding:2px 8px;border-radius:999px;background:rgba(74,222,128,.12);color:var(--ok)}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(74,222,128,.55)}70%{box-shadow:0 0 0 10px rgba(74,222,128,0)}100%{box-shadow:0 0 0 0 rgba(74,222,128,0)}}
+h1{font-size:clamp(44px,7.2vw,96px);line-height:.98;letter-spacing:-.045em;font-weight:600;margin:26px 0 24px}
+h1 .serif{font-size:1.08em;letter-spacing:-.02em}
+.line{display:block;overflow:hidden;padding-bottom:.06em}
+.line>span{display:inline-block;transform:translateY(110%);animation:up 1.1s var(--ease) forwards}
+.line:nth-child(2)>span{animation-delay:.12s}.line:nth-child(3)>span{animation-delay:.24s}
+@keyframes up{to{transform:none}}
+.fade{opacity:0;animation:fade 1s var(--ease) forwards}
+@keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.lead{font-size:clamp(17px,1.6vw,20px);color:var(--mu);max-width:560px}
+.lead b{color:var(--tx);font-weight:500}
+.role{font-family:var(--mono);font-size:14px;color:var(--a1);margin-top:18px;min-height:22px}
+.role .caret{display:inline-block;width:8px;height:16px;background:var(--a1);vertical-align:-3px;margin-left:2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:36px}
+.hero-meta{display:flex;gap:32px;margin-top:48px;flex-wrap:wrap}
+.hero-meta div{font-size:13px;color:var(--dim)}
+.hero-meta b{display:block;font-size:26px;color:var(--tx);font-weight:600;letter-spacing:-.03em}
+
+/* inference console */
+.console{position:relative;border-radius:var(--r);border:1px solid var(--line2);background:linear-gradient(180deg,rgba(17,20,32,.85),rgba(8,10,16,.85));backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:0 40px 120px -30px rgba(129,140,248,.35),inset 0 1px 0 rgba(255,255,255,.06);overflow:hidden;transform-style:preserve-3d;transition:transform .5s var(--ease)}
+.console::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:linear-gradient(140deg,rgba(94,234,212,.5),transparent 35%,transparent 65%,rgba(240,171,252,.45));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.c-head{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:12px;color:var(--dim)}
+.c-head i{width:10px;height:10px;border-radius:50%;background:#2a2f3d}
+.c-head i:nth-child(1){background:#ff5f57}.c-head i:nth-child(2){background:#febc2e}.c-head i:nth-child(3){background:#28c840}
+.c-head span{margin-left:auto}
+.c-body{padding:16px 18px;font-family:var(--mono);font-size:12.5px;line-height:1.75;height:236px;overflow:hidden;color:var(--mu)}
+.c-body .k{color:var(--a2)}.c-body .s{color:var(--a1)}.c-body .w{color:var(--warn)}.c-body .b{color:var(--bad)}.c-body .g{color:var(--ok)}.c-body .d{color:var(--dim)}
+.c-foot{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}
+.c-foot div{padding:14px 16px;border-right:1px solid var(--line)}
+.c-foot div:last-child{border:0}
+.c-foot small{display:block;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);font-family:var(--mono)}
+.c-foot b{font-size:20px;font-weight:600;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.spark{display:block;width:100%;height:34px;margin-top:6px}
+.scroll-hint{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:.15em}
+.mouse{width:22px;height:34px;border:1.5px solid var(--line2);border-radius:12px;position:relative}
+.mouse::after{content:"";position:absolute;left:50%;top:7px;width:3px;height:7px;border-radius:2px;background:var(--a1);transform:translateX(-50%);animation:wheel 1.8s infinite}
+@keyframes wheel{0%{opacity:1;top:7px}100%{opacity:0;top:18px}}
+
+/* ---------- marquee ---------- */
+.marquee{border-block:1px solid var(--line);padding:22px 0;overflow:hidden;position:relative;z-index:2;background:var(--bg)}
+.marquee::before,.marquee::after{content:"";position:absolute;top:0;bottom:0;width:140px;z-index:2;pointer-events:none}
+.marquee::before{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
+.marquee::after{right:0;background:linear-gradient(-90deg,var(--bg),transparent)}
+.track{display:flex;gap:56px;width:max-content;animation:scroll 40s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+.track span{display:flex;align-items:center;gap:12px;font-size:20px;font-weight:500;color:var(--mu);white-space:nowrap;letter-spacing:-.02em}
+.track span::before{content:"";width:6px;height:6px;border-radius:2px;background:var(--grad);transform:rotate(45deg)}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* ---------- sections ---------- */
+section{position:relative;z-index:2}
+.sec{padding:140px 0}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--a1)}
+.eyebrow::before{content:"";width:24px;height:1px;background:currentColor}
+h2{font-size:clamp(36px,5vw,64px);line-height:1.02;letter-spacing:-.04em;font-weight:600;margin:18px 0 20px;max-width:900px}
+.sub{color:var(--mu);font-size:18px;max-width:620px}
+.reveal{opacity:0;transform:translateY(40px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+
+/* card base with spotlight */
+.card{position:relative;border-radius:var(--r);border:1px solid var(--line);background:var(--card);overflow:hidden;transition:border-color .3s,transform .5s var(--ease),background .3s;isolation:isolate}
+.card::before{content:"";position:absolute;inset:0;z-index:-1;opacity:0;transition:opacity .4s;background:radial-gradient(500px circle at var(--mx,50%) var(--my,50%),rgba(129,140,248,.13),transparent 45%)}
+.card::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;z-index:-1;opacity:0;transition:opacity .4s;background:radial-gradient(300px circle at var(--mx,50%) var(--my,50%),rgba(94,234,212,.6),transparent 50%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.card:hover::before,.card:hover::after{opacity:1}
+.card:hover{border-color:var(--line2)}
+
+/* ---------- bento ---------- */
+.bento{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:minmax(180px,auto);gap:16px;margin-top:64px}
+.bento .card{padding:28px}
+.b-intro{grid-column:span 4;grid-row:span 2;display:flex;flex-direction:column;justify-content:space-between}
+.b-intro p{font-size:clamp(20px,2.1vw,28px);line-height:1.35;letter-spacing:-.02em;color:var(--mu)}
+.b-intro p b{color:var(--tx);font-weight:500}
+.b-intro .sig{display:flex;align-items:center;gap:14px;margin-top:32px}
+.avatar{width:52px;height:52px;border-radius:14px;background:var(--grad);display:grid;place-items:center;font-weight:700;color:#05060a;font-size:18px;overflow:hidden}
+.avatar img{width:100%;height:100%;object-fit:cover}
+.sig small{display:block;color:var(--dim);font-size:13px}
+.b-stat{grid-column:span 2}
+.b-stat .num{font-size:56px;font-weight:600;letter-spacing:-.05em;line-height:1;font-variant-numeric:tabular-nums}
+.b-stat .lbl{color:var(--mu);margin-top:10px;font-size:15px}
+.b-stat .ico{position:absolute;top:24px;right:24px;width:36px;height:36px;border-radius:10px;border:1px solid var(--line);display:grid;place-items:center;color:var(--a1)}
+.b-stat .ico svg{width:18px;height:18px}
+.b-code{grid-column:span 3;padding:0!important}
+.b-code pre{padding:24px 26px;font-family:var(--mono);font-size:13px;line-height:1.8;color:var(--mu);overflow:auto;white-space:pre}
+.b-code .k{color:var(--a3)}.b-code .f{color:var(--a1)}.b-code .s{color:#fde68a}.b-code .c{color:var(--dim)}.b-code .n{color:var(--a2)}
+.b-focus{grid-column:span 3}
+.focus-list{display:flex;flex-direction:column;gap:14px;margin-top:20px}
+.focus-list div{display:flex;align-items:center;gap:14px}
+.bar{flex:1;height:6px;border-radius:99px;background:rgba(255,255,255,.06);overflow:hidden}
+.bar i{display:block;height:100%;width:0;border-radius:inherit;background:var(--grad);transition:width 1.6s var(--ease)}
+.focus-list span{width:150px;font-size:14px;color:var(--mu)}
+.focus-list em{font-style:normal;font-family:var(--mono);font-size:12px;color:var(--dim);width:36px;text-align:right}
+.card h3{font-size:20px;font-weight:600;letter-spacing:-.02em}
+.card .muted{color:var(--mu);font-size:15px}
+
+/* ---------- featured project ---------- */
+.feat{margin-top:64px;border-radius:28px;border:1px solid var(--line2);background:radial-gradient(120% 120% at 0% 0%,rgba(94,234,212,.08),transparent 40%),radial-gradient(120% 120% at 100% 100%,rgba(240,171,252,.08),transparent 40%),var(--bg2);overflow:hidden}
+.feat-top{display:grid;grid-template-columns:1fr 1fr;gap:40px;padding:48px}
+.badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11.5px;padding:5px 10px;border-radius:999px;border:1px solid var(--line2);color:var(--mu)}
+.badge.hot{border-color:rgba(251,191,36,.35);color:var(--warn);background:rgba(251,191,36,.06)}
+.feat h3{font-size:clamp(30px,3.6vw,46px);letter-spacing:-.04em;line-height:1.05;margin:18px 0 16px;font-weight:600}
+.feat p{color:var(--mu);font-size:16.5px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.chip{font-family:var(--mono);font-size:12px;padding:5px 11px;border-radius:8px;background:rgba(255,255,255,.04);border:1px solid var(--line);color:var(--mu)}
+.kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.kpi{padding:18px;border-radius:16px;border:1px solid var(--line);background:rgba(0,0,0,.25)}
+.kpi small{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--dim)}
+.kpi b{display:block;font-size:30px;font-weight:600;letter-spacing:-.03em;margin-top:6px;font-variant-numeric:tabular-nums}
+.kpi .tr{font-size:12px;font-family:var(--mono)}
+.gauge-wrap{grid-column:span 2;display:flex;align-items:center;gap:20px}
+.gauge{width:140px;flex-shrink:0}
+.sig-tag{display:inline-block;font-family:var(--mono);font-weight:500;font-size:13px;padding:6px 12px;border-radius:8px;margin-top:8px}
+.pipeline{border-top:1px solid var(--line);padding:36px 48px 44px;background:rgba(0,0,0,.2)}
+.pipeline-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;font-family:var(--mono);font-size:12px;color:var(--dim);letter-spacing:.08em;text-transform:uppercase}
+.pipe{width:100%;height:auto;display:block}
+.pipe .node rect{fill:rgba(255,255,255,.03);stroke:rgba(255,255,255,.14)}
+.pipe .node:hover rect{stroke:var(--a1);fill:rgba(94,234,212,.06)}
+.pipe text{font-family:var(--sans);fill:var(--tx);font-size:14px;font-weight:600}
+.pipe .t2{font-family:var(--mono);fill:var(--dim);font-size:10.5px;font-weight:400}
+.pipe .edge{stroke:rgba(255,255,255,.12);stroke-width:1.4;fill:none}
+.pipe .flow{stroke:url(#flowGrad);stroke-width:2;fill:none;stroke-dasharray:6 14;animation:dash 1.4s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-40}}
+.pipe-mobile{display:none}
+
+/* ---------- projects ---------- */
+.proj-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+.filters{display:flex;gap:6px;flex-wrap:wrap;padding:5px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.02)}
+.filters button{padding:8px 16px;border-radius:999px;font-size:14px;color:var(--mu);transition:.25s}
+.filters button.on{background:var(--tx);color:#05060a}
+.filters button:not(.on):hover{color:var(--tx)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+.proj{display:flex;flex-direction:column;padding:0;min-height:100%;transition:opacity .4s,transform .5s var(--ease),border-color .3s}
+.proj.hide{display:none}
+.proj .vis{height:170px;position:relative;border-bottom:1px solid var(--line);overflow:hidden;background:rgba(0,0,0,.25)}
+.proj .vis svg{position:absolute;inset:0;width:100%;height:100%}
+.proj .body{padding:24px;display:flex;flex-direction:column;flex:1}
+.proj .meta{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:11.5px;color:var(--dim);text-transform:uppercase;letter-spacing:.08em}
+.proj h3{margin:12px 0 8px}
+.proj p{color:var(--mu);font-size:15px;flex:1}
+.proj .chips{margin-top:18px}
+.proj .go{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:.35s var(--ease)}
+.proj:hover .go{background:var(--tx);color:#05060a;transform:rotate(-45deg)}
+.proj .go svg{width:14px;height:14px}
+.proj:hover{transform:translateY(-4px)}
+
+/* ---------- skills ---------- */
+.skills{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:64px}
+.skill{padding:28px}
+.skill .ic{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;margin-bottom:22px;border:1px solid var(--line2);background:linear-gradient(135deg,rgba(94,234,212,.12),rgba(129,140,248,.12))}
+.skill .ic svg{width:22px;height:22px;color:var(--a1)}
+.skill ul{list-style:none;margin-top:18px;display:flex;flex-direction:column;gap:9px}
+.skill li{font-size:14.5px;color:var(--mu);display:flex;align-items:center;gap:10px}
+.skill li::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--a2)}
+
+/* ---------- timeline ---------- */
+.tl{margin-top:64px;position:relative}
+.tl::before{content:"";position:absolute;left:180px;top:8px;bottom:8px;width:1px;background:linear-gradient(var(--a1),var(--a2),transparent)}
+.tl-item{display:grid;grid-template-columns:180px 1fr;gap:48px;padding:0 0 56px;position:relative}
+.tl-item::before{content:"";position:absolute;left:175px;top:8px;width:11px;height:11px;border-radius:50%;background:var(--bg);border:2px solid var(--a1);box-shadow:0 0 0 5px rgba(94,234,212,.1)}
+.tl-date{font-family:var(--mono);font-size:13px;color:var(--dim);padding-top:4px}
+.tl-item h3{font-size:24px;letter-spacing:-.025em;font-weight:600}
+.tl-item h4{font-weight:400;color:var(--a1);font-size:15px;margin:4px 0 12px}
+.tl-item p{color:var(--mu);max-width:640px}
+
+/* ---------- contact ---------- */
+.contact{text-align:center;padding:160px 0;overflow:hidden}
+.contact .orb{position:absolute;left:50%;top:50%;width:780px;height:780px;transform:translate(-50%,-50%);border-radius:50%;background:conic-gradient(from 0deg,rgba(94,234,212,.25),rgba(129,140,248,.25),rgba(240,171,252,.25),rgba(94,234,212,.25));filter:blur(110px);opacity:.55;animation:spin 18s linear infinite;z-index:-1}
+@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.contact h2{font-size:clamp(48px,9vw,128px);margin:24px auto;max-width:none;letter-spacing:-.055em;line-height:.95}
+.contact .sub{margin:0 auto}
+.contact .cta{justify-content:center}
+.socials{display:flex;gap:10px;justify-content:center;margin-top:28px}
+.socials a{width:46px;height:46px;border-radius:14px;border:1px solid var(--line2);display:grid;place-items:center;transition:.3s var(--ease);background:rgba(255,255,255,.03)}
+.socials a:hover{transform:translateY(-4px);border-color:var(--a1);color:var(--a1)}
+.socials svg{width:20px;height:20px}
+footer{border-top:1px solid var(--line);padding:28px 0;position:relative;z-index:2}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--dim)}
+
+/* ---------- command palette ---------- */
+.cmdk{position:fixed;inset:0;z-index:200;display:none;align-items:flex-start;justify-content:center;padding-top:14vh;background:rgba(3,4,8,.6);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.cmdk.open{display:flex;animation:fade .25s var(--ease)}
+.cmdk-box{width:min(600px,calc(100% - 32px));border-radius:18px;border:1px solid var(--line2);background:rgba(14,16,24,.96);box-shadow:0 40px 120px -20px rgba(0,0,0,.8);overflow:hidden}
+.cmdk-in{display:flex;align-items:center;gap:12px;padding:16px 18px;border-bottom:1px solid var(--line)}
+.cmdk-in svg{width:18px;height:18px;color:var(--dim)}
+.cmdk-in input{flex:1;background:none;border:0;outline:0;color:var(--tx);font:inherit;font-size:16px}
+.cmdk-list{max-height:340px;overflow:auto;padding:8px}
+.cmdk-list small{display:block;padding:10px 12px 6px;font-family:var(--mono);font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:.1em}
+.cmdk-item{display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:10px;font-size:15px;cursor:pointer;color:var(--mu)}
+.cmdk-item.sel{background:rgba(255,255,255,.06);color:var(--tx)}
+.cmdk-item span{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--dim)}
+.cmdk-item i{font-style:normal;width:24px;text-align:center}
+
+/* ---------- responsive ---------- */
+@media (max-width:1000px){
+  .hero .wrap{grid-template-columns:1fr}
+  .console{max-width:560px}
+  .bento{grid-template-columns:repeat(2,1fr)}
+  .b-intro,.b-code,.b-focus{grid-column:span 2}
+  .b-intro{grid-row:auto}
+  .b-stat{grid-column:span 1}
+  .feat-top{grid-template-columns:1fr;padding:32px}
+  .pipeline{padding:28px 32px}
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .skills{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:760px){
+  .nav-links,.kbd-btn{display:none}
+  .wrap{padding:0 16px}
+  .sec{padding:96px 0}
+  .hero{padding-top:120px}
+  .hero-meta{gap:22px}
+  .scroll-hint{display:none}
+  .bento{grid-template-columns:1fr}
+  .b-intro,.b-code,.b-focus,.b-stat{grid-column:span 1}
+  .grid,.skills{grid-template-columns:1fr}
+  .feat-top{padding:24px}
+  .kpis{grid-template-columns:1fr 1fr}
+  .gauge-wrap{flex-direction:column;align-items:flex-start}
+  .pipeline{padding:24px}
+  .pipe{display:none}.pipe-mobile{display:flex;flex-direction:column;gap:8px}
+  .pipe-mobile div{padding:12px 14px;border:1px solid var(--line);border-radius:12px;font-size:14px;display:flex;justify-content:space-between;gap:10px}
+  .pipe-mobile div span{font-family:var(--mono);font-size:11px;color:var(--dim);text-align:right}
+  .tl::before{left:5px}
+  .tl-item{grid-template-columns:1fr;gap:6px;padding-left:32px}
+  .tl-item::before{left:0}
+  .focus-list span{width:110px}
+  .c-body{font-size:11.5px}
+  .proj-head{align-items:flex-start}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<div class="noise"></div>
+<div class="glow" id="glow"></div>
+<div class="progress" id="progress"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#top" class="logo"><span class="logo-mark">RD</span><span>Raphaël Deutou</span></a>
+  <div class="nav-links">
+    <a href="#about">À propos</a>
+    <a href="#work">Projets</a>
+    <a href="#skills">Expertise</a>
+    <a href="#path">Parcours</a>
+  </div>
+  <div class="nav-r">
+    <button class="kbd-btn" id="openCmd" aria-label="Ouvrir la palette de commandes">Rechercher <kbd>Ctrl K</kbd></button>
+    <a href="#contact" class="btn btn-p btn-sm magnetic">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <canvas id="net" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div>
+      <div class="pill fade" style="animation-delay:.1s"><span class="dot"></span>Ouvert aux opportunités Data &amp; IA <span class="tag">2026</span></div>
+      <h1>
+        <span class="line"><span>Je transforme</span></span>
+        <span class="line"><span>la donnée en</span></span>
+        <span class="line"><span><span class="serif grad">décisions.</span></span></span>
+      </h1>
+      <p class="lead fade" style="animation-delay:.5s">Data Scientist &amp; AI Engineer. Je conçois des systèmes d'IA <b>de bout en bout</b> — de la collecte des données au modèle en production — en mêlant <b>deep learning</b>, <b>NLP</b> et <b>MLOps</b>.</p>
+      <div class="role fade" style="animation-delay:.65s"><span class="d">&gt;</span> <span id="typed"></span><span class="caret"></span></div>
+      <div class="cta fade" style="animation-delay:.8s">
+        <a href="#work" class="btn btn-p magnetic">Voir mes projets <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+        <a href="https://github.com/RaphaelDeutou" target="_blank" rel="noopener" class="btn btn-g magnetic"><svg viewBox="0 0 24 24" fill="currentColor" style="transform:none"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.6 18.3 5 18.3 5c.7 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.5 11.5 0 0 0 23.5 12C23.5 5.7 18.3.5 12 .5z"/></svg>GitHub</a>
+      </div>
+      <div class="hero-meta fade" style="animation-delay:1s">
+        <div><b data-count="19">0</b>dépôts publics</div>
+        <div><b data-count="5" data-suffix="M+">0</b>lignes traitées</div>
+        <div><b data-count="4">0</b>modèles orchestrés</div>
+      </div>
+    </div>
+
+    <div class="console fade" id="console" style="animation-delay:.6s">
+      <div class="c-head"><i></i><i></i><i></i>&nbsp; macro_risk_overlay.py <span>● live demo</span></div>
+      <div class="c-body" id="log"></div>
+      <div class="c-foot">
+        <div><small>Risk score</small><b id="mRisk">0.42</b><svg class="spark" id="spark" viewBox="0 0 100 34" preserveAspectRatio="none"></svg></div>
+        <div><small>Sentiment</small><b id="mSent">−0.18</b><svg class="spark" id="spark2" viewBox="0 0 100 34" preserveAspectRatio="none"></svg></div>
+        <div><small>Action</small><b id="mAct" style="color:var(--warn)">REDUCE</b><svg class="spark" id="spark3" viewBox="0 0 100 34" preserveAspectRatio="none"></svg></div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint"><div class="mouse"></div>SCROLL</div>
+</header>
+
+<!-- MARQUEE -->
+<div class="marquee" aria-label="Technologies">
+  <div class="track" id="track">
+    <span>Python</span><span>PyTorch</span><span>TensorFlow</span><span>scikit-learn</span><span>Hugging Face</span><span>FinBERT</span><span>LSTM</span><span>PPO · Stable-Baselines3</span><span>YOLOv8</span><span>CrewAI</span><span>FastAPI</span><span>Streamlit</span><span>MLflow</span><span>Docker</span><span>GitLab CI/CD</span><span>Pandas</span><span>SQL</span>
+  </div>
+</div>
+
+<!-- ABOUT / BENTO -->
+<section class="sec" id="about">
+  <div class="wrap">
+    <span class="eyebrow reveal">À propos</span>
+    <h2 class="reveal d1">Ingénieur de la donnée, <span class="serif grad">obsédé</span> par l'impact réel des modèles.</h2>
+    <div class="bento">
+      <div class="card b-intro reveal">
+        <p>Je ne m'arrête pas au notebook. J'aime <b>industrialiser</b> : pipelines reproductibles, modèles versionnés, APIs, monitoring de drift. Mon terrain de jeu : la <b>finance quantitative</b>, le <b>NLP</b> et les <b>agents IA</b> — là où un bon modèle change concrètement une décision.</p>
+        <div class="sig">
+          <div class="avatar">RD</div>
+          <div><b>Raphaël Deutou</b><small>Data Scientist · AI Engineer</small></div>
+        </div>
+      </div>
+      <div class="card b-stat reveal d1">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 6-7"/></svg></div>
+        <div class="num"><span data-count="12">0</span><span class="grad">y</span></div>
+        <div class="lbl">d'historique backtesté sur le moteur de risque macro</div>
+      </div>
+      <div class="card b-stat reveal d2">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 9h6v6H9z"/></svg></div>
+        <div class="num"><span data-count="100">0</span><span class="grad">%</span></div>
+        <div class="lbl">inférence locale &amp; offline — aucun appel modèle distant</div>
+      </div>
+      <div class="card b-code reveal d1">
+<pre><span class="c"># ma façon de travailler</span>
+<span class="k">class</span> <span class="f">Raphael</span>(<span class="n">DataScientist</span>):
+    stack   = [<span class="s">"PyTorch"</span>, <span class="s">"HF"</span>, <span class="s">"MLflow"</span>]
+    focus   = {<span class="s">"finance"</span>, <span class="s">"NLP"</span>, <span class="s">"agents"</span>}
+
+    <span class="k">def</span> <span class="f">ship</span>(self, idea):
+        data  = self.<span class="f">collect</span>(idea).<span class="f">clean</span>()
+        model = self.<span class="f">train</span>(data, track=<span class="n">True</span>)
+        <span class="k">return</span> self.<span class="f">deploy</span>(model, monitor=<span class="n">True</span>)</pre>
+      </div>
+      <div class="card b-focus reveal d2">
+        <h3>Où je passe mon temps</h3>
+        <p class="muted">Répartition de mes projets récents.</p>
+        <div class="focus-list">
+          <div><span>Machine Learning</span><div class="bar"><i data-w="92"></i></div><em>92</em></div>
+          <div><span>Deep Learning</span><div class="bar"><i data-w="84"></i></div><em>84</em></div>
+          <div><span>NLP &amp; LLM</span><div class="bar"><i data-w="80"></i></div><em>80</em></div>
+          <div><span>MLOps</span><div class="bar"><i data-w="78"></i></div><em>78</em></div>
+          <div><span>Data Engineering</span><div class="bar"><i data-w="74"></i></div><em>74</em></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED -->
+<section class="sec" id="work" style="padding-top:40px">
+  <div class="wrap">
+    <span class="eyebrow reveal">Projet phare</span>
+    <h2 class="reveal d1">Un overlay de risque macro <span class="serif grad">piloté par l'IA</span>.</h2>
+
+    <div class="feat reveal d2">
+      <div class="feat-top">
+        <div>
+          <span class="badge hot">★ Featured · Finance quantitative</span>
+          <h3>MacroRiskOverlay AI</h3>
+          <p>Système d'aide à la décision pour le trading Forex de position (EUR/USD). Il fusionne données de marché, prévision de volatilité par <b style="color:var(--tx)">LSTM</b>, sentiment des news financières via un <b style="color:var(--tx)">FinBERT fine-tuné</b>, signaux de stress macro et une couche de <b style="color:var(--tx)">reinforcement learning (PPO)</b> pour recommander chaque jour un ajustement de position.</p>
+          <div class="chips">
+            <span class="chip">PyTorch</span><span class="chip">LSTM</span><span class="chip">FinBERT</span><span class="chip">PPO</span><span class="chip">FastAPI</span><span class="chip">yfinance</span><span class="chip">Telegram Bot</span><span class="chip">Gemini</span>
+          </div>
+          <div class="cta" style="margin-top:28px">
+            <a href="#contact" class="btn btn-g btn-sm magnetic">Demander une démo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+          </div>
+        </div>
+        <div class="kpis">
+          <div class="kpi"><small>Sorties</small><b>4</b><span class="tr" style="color:var(--mu)">Augment · Maintain · Reduce · Neutralize</span></div>
+          <div class="kpi"><small>Macro bias</small><b>3</b><span class="tr" style="color:var(--mu)">Buy · Sell · Neutre</span></div>
+          <div class="kpi"><small>État RL</small><b>8-D</b><span class="tr" style="color:var(--mu)">espace d'observation PPO</span></div>
+          <div class="kpi"><small>Backtest</small><b>12 ans</b><span class="tr" style="color:var(--mu)">recalibration incluse</span></div>
+          <div class="kpi gauge-wrap">
+            <svg class="gauge" viewBox="0 0 140 84">
+              <defs><linearGradient id="gg" x1="0" x2="1"><stop offset="0" stop-color="#4ade80"/><stop offset=".5" stop-color="#fbbf24"/><stop offset="1" stop-color="#fb7185"/></linearGradient></defs>
+              <path d="M12 76a58 58 0 0 1 116 0" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="10" stroke-linecap="round"/>
+              <path id="gArc" d="M12 76a58 58 0 0 1 116 0" fill="none" stroke="url(#gg)" stroke-width="10" stroke-linecap="round" stroke-dasharray="182.2" stroke-dashoffset="182.2" style="transition:stroke-dashoffset 1.2s cubic-bezier(.22,1,.36,1)"/>
+              <text x="70" y="70" text-anchor="middle" fill="#eef1f7" font-family="Inter Tight" font-size="24" font-weight="600" id="gVal">0.00</text>
+            </svg>
+            <div><small style="font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--dim)">MACRO RISK SCORE — SIMULATION</small><br><span class="sig-tag" id="gTag" style="background:rgba(251,191,36,.1);color:var(--warn)">REDUCE</span><p style="font-size:13.5px;margin-top:8px">Score borné combinant volatilité, sentiment, stress et momentum.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="pipeline">
+        <div class="pipeline-head"><span>Architecture du pipeline</span><span>daily · offline-first</span></div>
+        <svg class="pipe" viewBox="0 0 1100 200" role="img" aria-label="Pipeline : données, LSTM et FinBERT, score de risque, agent PPO, recommandation">
+          <defs><linearGradient id="flowGrad" x1="0" x2="1"><stop offset="0" stop-color="#5eead4"/><stop offset="1" stop-color="#a5b4fc"/></linearGradient></defs>
+          <path class="edge" d="M170 100 C 220 100, 220 45, 270 45"/><path class="flow" d="M170 100 C 220 100, 220 45, 270 45"/>
+          <path class="edge" d="M170 100 C 220 100, 220 155, 270 155"/><path class="flow" d="M170 100 C 220 100, 220 155, 270 155"/>
+          <path class="edge" d="M450 45 C 500 45, 500 100, 550 100"/><path class="flow" d="M450 45 C 500 45, 500 100, 550 100"/>
+          <path class="edge" d="M450 155 C 500 155, 500 100, 550 100"/><path class="flow" d="M450 155 C 500 155, 500 100, 550 100"/>
+          <path class="edge" d="M730 100 H 790"/><path class="flow" d="M730 100 H 790"/>
+          <g class="node"><rect x="10" y="65" width="160" height="70" rx="14"/><text x="28" y="96">Data Engine</text><text class="t2" x="28" y="116">FX · macro · news</text></g>
+          <g class="node"><rect x="270" y="12" width="180" height="66" rx="14"/><text x="288" y="41">LSTM Volatility</text><text class="t2" x="288" y="61">σ forecast · PyTorch</text></g>
+          <g class="node"><rect x="270" y="122" width="180" height="66" rx="14"/><text x="288" y="151">FinBERT Sentiment</text><text class="t2" x="288" y="171">NLP fine-tuné</text></g>
+          <g class="node"><rect x="550" y="65" width="180" height="70" rx="14"/><text x="568" y="96">Risk Overlay</text><text class="t2" x="568" y="116">score · macro bias</text></g>
+          <g class="node"><rect x="790" y="65" width="160" height="70" rx="14"/><text x="808" y="96">PPO Agent</text><text class="t2" x="808" y="116">RL allocation</text></g>
+          <path class="edge" d="M950 100 H 970"/><path class="flow" d="M950 100 H 970"/>
+          <g class="node"><rect x="970" y="65" width="120" height="70" rx="14" style="stroke:rgba(94,234,212,.5)"/><text x="988" y="96">Signal</text><text class="t2" x="988" y="116">API · Telegram</text></g>
+        </svg>
+        <div class="pipe-mobile">
+          <div>Data Engine <span>FX · macro · news</span></div>
+          <div>LSTM + FinBERT <span>volatilité · sentiment</span></div>
+          <div>Risk Overlay <span>score · macro bias</span></div>
+          <div>PPO Agent <span>RL allocation</span></div>
+          <div style="border-color:rgba(94,234,212,.4)">Signal <span>API · Telegram</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="sec" id="projects" style="padding-top:40px">
+  <div class="wrap">
+    <div class="proj-head">
+      <div>
+        <span class="eyebrow reveal">Sélection</span>
+        <h2 class="reveal d1" style="margin-bottom:0">D'autres projets.</h2>
+      </div>
+      <div class="filters reveal d2" id="filters">
+        <button class="on" data-f="all">Tous</button>
+        <button data-f="ml">ML</button>
+        <button data-f="dl">Deep Learning</button>
+        <button data-f="nlp">NLP &amp; Agents</button>
+        <button data-f="ops">MLOps</button>
+      </div>
+    </div>
+
+    <div class="grid" id="grid">
+      <a class="card proj reveal" data-c="ops ml" href="https://github.com/RaphaelDeutou/RaphaelDeutou-mlops_project" target="_blank" rel="noopener">
+        <div class="vis"><svg viewBox="0 0 360 170" preserveAspectRatio="xMidYMid slice"><g fill="none" stroke="rgba(94,234,212,.5)"><rect x="40" y="60" width="70" height="50" rx="10"/><rect x="145" y="60" width="70" height="50" rx="10" stroke="rgba(129,140,248,.6)"/><rect x="250" y="60" width="70" height="50" rx="10" stroke="rgba(240,171,252,.6)"/><path d="M110 85h35M215 85h35" stroke-dasharray="4 5" class="flowsm"/></g><g font-family="JetBrains Mono" font-size="10" fill="#9aa3b5" text-anchor="middle"><text x="75" y="89">train</text><text x="180" y="89">mlflow</text><text x="285" y="89">api</text></g><text x="180" y="140" font-family="JetBrains Mono" font-size="10" fill="#5d6578" text-anchor="middle">docker compose up --build</text></svg></div>
+        <div class="body"><div class="meta"><span>MLOps · M2</span><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
+          <h3>Détection de fraude bancaire</h3>
+          <p>Industrialisation complète d'un modèle de détection de fraude par carte : Docker, tracking MLflow, API, tests et simulation de drift avec alerte — reproductible en une commande.</p>
+          <div class="chips"><span class="chip">Docker</span><span class="chip">MLflow</span><span class="chip">GitLab CI</span><span class="chip">FastAPI</span></div></div>
+      </a>
+
+      <a class="card proj reveal d1" data-c="ml" href="https://github.com/RaphaelDeutou/credit_approved" target="_blank" rel="noopener">
+        <div class="vis"><svg viewBox="0 0 360 170" preserveAspectRatio="xMidYMid slice"><g id="bars1"></g></svg></div>
+        <div class="body"><div class="meta"><span>Scoring · Fintech</span><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
+          <h3>Credit Approved</h3>
+          <p>Application d'analyse de dossiers de crédit : prédiction individuelle, scoring batch sur CSV et dashboard, adossée à une API FastAPI.</p>
+          <div class="chips"><span class="chip">scikit-learn</span><span class="chip">Streamlit</span><span class="chip">FastAPI</span></div></div>
+      </a>
+
+      <a class="card proj reveal d2" data-c="nlp ml" href="https://github.com/RaphaelDeutou/Projet-Spe-IA-4DIA" target="_blank" rel="noopener">
+        <div class="vis"><svg viewBox="0 0 360 170" preserveAspectRatio="xMidYMid slice"><g font-family="Inter Tight" font-size="12"><rect x="40" y="34" width="180" height="34" rx="12" fill="rgba(255,255,255,.06)"/><text x="54" y="56" fill="#9aa3b5">Un vol Paris → Douala ?</text><rect x="140" y="80" width="180" height="34" rx="12" fill="rgba(129,140,248,.25)"/><text x="154" y="102" fill="#eef1f7">Prix estimé : 642 € ✈</text><circle cx="60" cy="138" r="3" fill="#5eead4" class="typing"/><circle cx="72" cy="138" r="3" fill="#5eead4" class="typing" style="animation-delay:.2s"/><circle cx="84" cy="138" r="3" fill="#5eead4" class="typing" style="animation-delay:.4s"/></g></svg></div>
+        <div class="body"><div class="meta"><span>Conversational AI</span><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
+          <h3>Chatbot de réservation de vols</h3>
+          <p>Assistant conversationnel qui réserve un vol et prédit le prix du billet grâce à un modèle entraîné sur un dataset de plus de 5 millions de lignes.</p>
+          <div class="chips"><span class="chip">NLP</span><span class="chip">Regression</span><span class="chip">Big Data</span></div></div>
+      </a>
+
+      <div class="card proj reveal" data-c="nlp">
+        <div class="vis"><svg viewBox="0 0 360 170" preserveAspectRatio="xMidYMid slice"><g stroke="rgba(255,255,255,.15)"><line x1="180" y1="85" x2="90" y2="45"/><line x1="180" y1="85" x2="270" y2="45"/><line x1="180" y1="85" x2="100" y2="130"/><line x1="180" y1="85" x2="260" y2="130"/></g><circle cx="180" cy="85" r="20" fill="rgba(129,140,248,.25)" stroke="#818cf8"/><g fill="rgba(94,234,212,.15)" stroke="#5eead4"><circle cx="90" cy="45" r="12"/><circle cx="270" cy="45" r="12"/><circle cx="100" cy="130" r="12"/><circle cx="260" cy="130" r="12"/></g><text x="180" y="89" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#eef1f7">crew</text></svg></div>
+        <div class="body"><div class="meta"><span>Agents IA · Mémoire 2026</span><span class="badge" style="font-size:10px">Privé</span></div>
+          <h3>ATS CV IA</h3>
+          <p>Système multi-agents qui analyse une offre d'emploi et adapte automatiquement un CV pour maximiser sa compatibilité avec les ATS.</p>
+          <div class="chips"><span class="chip">CrewAI</span><span class="chip">LLM</span><span class="chip">Multi-agents</span></div></div>
+      </div>
+
+      <div class="card proj reveal d1" data-c="dl">
+        <div class="vis"><svg viewBox="0 0 360 170" preserveAspectRatio="xMidYMid slice"><rect width="360" height="170" fill="url(#dots)"/><defs><pattern id="dots" width="14" height="14" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="rgba(255,255,255,.07)"/></pattern></defs><g fill="none" stroke-width="2"><rect x="50" y="40" width="90" height="100" rx="4" stroke="#5eead4" class="bbox"/><rect x="190" y="60" width="120" height="70" rx="4" stroke="#f0abfc" class="bbox" style="animation-delay:.6s"/></g><g font-family="JetBrains Mono" font-size="10"><rect x="50" y="26" width="86" height="14" fill="#5eead4"/><text x="54" y="37" fill="#05060a">person 0.94</text><rect x="190" y="46" width="70" height="14" fill="#f0abfc"/><text x="194" y="57" fill="#05060a">car 0.88</text></g></svg></div>
+        <div class="body"><div class="meta"><span>Computer Vision</span><span class="badge" style="font-size:10px">Privé</span></div>
+          <h3>Détection d'objets en vidéo</h3>
+          <p>Détection et suivi d'objets en temps réel sur flux vidéo avec YOLOv8 (n / m / x), comparaison vitesse-précision des variantes.</p>
+          <div class="chips"><span class="chip">YOLOv8</span><span class="chip">OpenCV</span><span class="chip">PyTorch</span></div></div>
+      </div>
+
+      <a class="card proj reveal d2" data-c="dl ml" href="https://github.com/RaphaelDeutou/Trading-Model" target="_blank" rel="noopener">
+        <div class="vis"><svg viewBox="0 0 360 170" preserveAspectRatio="none"><g id="candles"></g></svg></div>
+        <div class="body"><div class="meta"><span>Time Series</span><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
+          <h3>Trading Model</h3>
+          <p>Modélisation de séries temporelles financières : feature engineering, modèles prédictifs et évaluation sur données de marché.</p>
+          <div class="chips"><span class="chip">Pandas</span><span class="chip">Time Series</span><span class="chip">Jupyter</span></div></div>
+      </a>
+    </div>
+    <div style="text-align:center;margin-top:40px" class="reveal">
+      <a href="https://github.com/RaphaelDeutou?tab=repositories" target="_blank" rel="noopener" class="btn btn-g magnetic">Tous les dépôts sur GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="sec" id="skills">
+  <div class="wrap">
+    <span class="eyebrow reveal">Expertise</span>
+    <h2 class="reveal d1">Du <span class="serif grad">raw data</span> à l'API en production.</h2>
+    <p class="sub reveal d2">Une boîte à outils couvrant tout le cycle de vie d'un produit IA.</p>
+    <div class="skills">
+      <div class="card skill reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></div>
+        <h3>Data</h3><p class="muted">Collecter, nettoyer, comprendre.</p>
+        <ul><li>Python · Pandas · NumPy</li><li>SQL · APIs financières</li><li>Feature engineering</li><li>Data viz · Statistiques</li></ul>
+      </div>
+      <div class="card skill reveal d1">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="5" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><path d="M7 6.5 10 11M7 17.5l3-4.5M14 12h3"/></svg></div>
+        <h3>Machine &amp; Deep Learning</h3><p class="muted">Modéliser ce qui compte.</p>
+        <ul><li>scikit-learn · XGBoost</li><li>PyTorch · TensorFlow</li><li>LSTM · CNN · YOLO</li><li>Reinforcement Learning</li></ul>
+      </div>
+      <div class="card skill reveal d2">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 10h8M8 13h5"/></svg></div>
+        <h3>NLP &amp; GenAI</h3><p class="muted">Faire parler les données.</p>
+        <ul><li>Transformers · FinBERT</li><li>LLM · Prompt engineering</li><li>Agents · CrewAI</li><li>Chatbots</li></ul>
+      </div>
+      <div class="card skill reveal d3">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></div>
+        <h3>MLOps &amp; Prod</h3><p class="muted">Livrer et maintenir.</p>
+        <ul><li>Docker · CI/CD</li><li>MLflow · versioning</li><li>FastAPI · Streamlit</li><li>Monitoring &amp; drift</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PATH -->
+<section class="sec" id="path" style="padding-top:40px">
+  <div class="wrap">
+    <span class="eyebrow reveal">Parcours</span>
+    <h2 class="reveal d1">Une trajectoire <span class="serif grad">construite</span> projet après projet.</h2>
+    <div class="tl">
+      <div class="tl-item reveal">
+        <div class="tl-date">2026 · Aujourd'hui</div>
+        <div><h3>Master Data &amp; Intelligence Artificielle</h3><h4>Mémoire — « L'IA comme outil de gestion »</h4>
+        <p>Recherche appliquée sur l'IA d'aide à la décision : overlay de risque macro pour le trading et agents IA d'optimisation de candidatures. MLOps : industrialisation d'un modèle de détection de fraude.</p></div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-date">5ᵉ année</div>
+        <div><h3>Deep Learning avancé</h3><h4>Vision, séquences &amp; modèles génératifs</h4>
+        <p>Réseaux convolutifs, modèles séquentiels, détection d'objets temps réel avec YOLOv8 et pratiques d'entraînement à grande échelle.</p></div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-date">4ᵉ année</div>
+        <div><h3>Spécialisation Intelligence Artificielle</h3><h4>Machine learning &amp; IA conversationnelle</h4>
+        <p>Chatbot de réservation de vols avec prédiction de prix sur plus de 5 millions de lignes, scoring de crédit, statistiques inférentielles.</p></div>
+      </div>
+      <div class="tl-item reveal" style="padding-bottom:0">
+        <div class="tl-date">Les débuts</div>
+        <div><h3>Développement web &amp; logiciel</h3><h4>PHP · JavaScript · Angular</h4>
+        <p>Applications full-stack (vente aux enchères, CRUD, site pour l'association Archéo-IT) — une base solide pour livrer des produits data utilisables.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="orb"></div>
+  <div class="wrap">
+    <span class="eyebrow reveal">Contact</span>
+    <h2 class="reveal d1">Construisons<br><span class="serif grad">quelque chose.</span></h2>
+    <p class="sub reveal d2">Stage, alternance, CDI ou projet freelance en Data / IA — je suis à l'écoute. Parlons de vos données.</p>
+    <div class="cta reveal d3">
+      <a href="https://github.com/RaphaelDeutou" target="_blank" rel="noopener" class="btn btn-p magnetic">Me contacter via GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+    </div>
+    <div class="socials reveal d4">
+      <a href="https://github.com/RaphaelDeutou" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.6 18.3 5 18.3 5c.7 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.5 11.5 0 0 0 23.5 12C23.5 5.7 18.3.5 12 .5z"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap"><span>© <span id="yr"></span> Raphaël Deutou — Conçu &amp; codé avec soin.</span><span class="mono">Appuie sur <kbd>Ctrl K</kbd> pour naviguer</span></div>
+</footer>
+
+<!-- COMMAND PALETTE -->
+<div class="cmdk" id="cmdk" role="dialog" aria-modal="true" aria-label="Palette de commandes">
+  <div class="cmdk-box">
+    <div class="cmdk-in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg><input id="cmdkInput" placeholder="Tape une commande ou une section…" autocomplete="off"><kbd>Esc</kbd></div>
+    <div class="cmdk-list" id="cmdkList"></div>
+  </div>
+</div>
+
+<style>
+.flowsm{animation:dash 1.2s linear infinite}
+.typing{animation:typ 1.2s infinite}
+@keyframes typ{0%,100%{opacity:.25}50%{opacity:1}}
+.bbox{stroke-dasharray:400;stroke-dashoffset:400;animation:draw 3s var(--ease) infinite}
+@keyframes draw{0%{stroke-dashoffset:400}40%,85%{stroke-dashoffset:0}100%{stroke-dashoffset:-400}}
+</style>
+
+<script>
+(() => {
+const $ = (s, el = document) => el.querySelector(s);
+const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+$('#yr').textContent = new Date().getFullYear();
+
+/* ---------- neural network canvas ---------- */
+const cv = $('#net'), ctx = cv.getContext('2d');
+let W, H, DPR, nodes = [], mouse = {x: -9999, y: -9999};
+function size() {
+  DPR = Math.min(devicePixelRatio || 1, 2);
+  W = cv.clientWidth; H = cv.clientHeight;
+  cv.width = W * DPR; cv.height = H * DPR; ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+  const n = Math.round(Math.min(110, (W * H) / 13000));
+  nodes = Array.from({length: n}, () => ({
+    x: Math.random() * W, y: Math.random() * H,
+    vx: (Math.random() - .5) * .3, vy: (Math.random() - .5) * .3,
+    r: Math.random() * 1.6 + .6, h: Math.random()
+  }));
+}
+const pulses = [];
+function frame() {
+  ctx.clearRect(0, 0, W, H);
+  const L = 140;
+  for (const p of nodes) {
+    p.x += p.vx; p.y += p.vy;
+    if (p.x < 0 || p.x > W) p.vx *= -1;
+    if (p.y < 0 || p.y > H) p.vy *= -1;
+    const dx = p.x - mouse.x, dy = p.y - mouse.y, d = Math.hypot(dx, dy);
+    if (d < 160) { p.x += dx / d * .6; p.y += dy / d * .6; }
+  }
+  for (let i = 0; i < nodes.length; i++) {
+    const a = nodes[i];
+    for (let j = i + 1; j < nodes.length; j++) {
+      const b = nodes[j], d = Math.hypot(a.x - b.x, a.y - b.y);
+      if (d < L) {
+        const md = Math.hypot((a.x + b.x) / 2 - mouse.x, (a.y + b.y) / 2 - mouse.y);
+        const boost = md < 220 ? (1 - md / 220) * .5 : 0;
+        ctx.strokeStyle = `rgba(${boost > .05 ? '94,234,212' : '129,140,248'},${(1 - d / L) * (.18 + boost)})`;
+        ctx.lineWidth = .7; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+        if (!reduce && Math.random() < .0006 && pulses.length < 24) pulses.push({a, b, t: 0});
+      }
+    }
+  }
+  for (let k = pulses.length - 1; k >= 0; k--) {
+    const q = pulses[k]; q.t += .02;
+    if (q.t >= 1) { pulses.splice(k, 1); continue; }
+    const x = q.a.x + (q.b.x - q.a.x) * q.t, y = q.a.y + (q.b.y - q.a.y) * q.t;
+    const g = ctx.createRadialGradient(x, y, 0, x, y, 8);
+    g.addColorStop(0, 'rgba(94,234,212,.9)'); g.addColorStop(1, 'rgba(94,234,212,0)');
+    ctx.fillStyle = g; ctx.beginPath(); ctx.arc(x, y, 8, 0, 7); ctx.fill();
+  }
+  for (const p of nodes) {
+    ctx.fillStyle = p.h > .7 ? 'rgba(240,171,252,.8)' : p.h > .35 ? 'rgba(165,180,252,.8)' : 'rgba(94,234,212,.8)';
+    ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 7); ctx.fill();
+  }
+  if (!reduce) requestAnimationFrame(frame);
+}
+size(); frame();
+addEventListener('resize', () => { size(); if (reduce) frame(); });
+$('.hero').addEventListener('mousemove', e => { const r = cv.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; });
+$('.hero').addEventListener('mouseleave', () => { mouse.x = mouse.y = -9999; });
+
+/* ---------- cursor glow, progress, nav ---------- */
+const glow = $('#glow'), prog = $('#progress'), nav = $('#nav');
+if (matchMedia('(pointer:fine)').matches) addEventListener('mousemove', e => { glow.style.left = e.clientX + 'px'; glow.style.top = e.clientY + 'px'; });
+const secs = $$('section[id]'), links = $$('.nav-links a');
+addEventListener('scroll', () => {
+  const h = document.documentElement;
+  prog.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
+  nav.classList.toggle('scrolled', h.scrollTop > 40);
+  let cur = '';
+  for (const s of secs) if (s.getBoundingClientRect().top < innerHeight * .4) cur = s.id;
+  if (cur === 'projects') cur = 'work';
+  links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
+}, {passive: true});
+
+/* ---------- typed roles ---------- */
+const roles = ['Data Scientist', 'Machine Learning Engineer', 'NLP & LLM Builder', 'MLOps Engineer', 'Quant AI Researcher'];
+let ri = 0, ci = 0, del = false; const typed = $('#typed');
+(function type() {
+  const w = roles[ri];
+  typed.textContent = w.slice(0, ci);
+  if (!del && ci === w.length) { del = true; return setTimeout(type, 1800); }
+  if (del && ci === 0) { del = false; ri = (ri + 1) % roles.length; }
+  ci += del ? -1 : 1;
+  setTimeout(type, del ? 35 : 70);
+})();
+
+/* ---------- live console ---------- */
+const log = $('#log');
+const fmt = (v, d = 2) => (v < 0 ? '−' : '+') + Math.abs(v).toFixed(d);
+const hist = {r: [], s: [], a: []};
+function spark(id, arr, color) {
+  const el = $(id); if (!arr.length) return;
+  const mn = Math.min(...arr), mx = Math.max(...arr), rg = (mx - mn) || 1;
+  const pts = arr.map((v, i) => [i / (arr.length - 1 || 1) * 100, 30 - (v - mn) / rg * 26]);
+  const d = pts.map((p, i) => (i ? 'L' : 'M') + p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join(' ');
+  el.innerHTML = `<defs><linearGradient id="g${id.slice(1)}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${color}" stop-opacity=".35"/><stop offset="1" stop-color="${color}" stop-opacity="0"/></linearGradient></defs><path d="${d} L100 34 L0 34Z" fill="url(#g${id.slice(1)})"/><path d="${d}" fill="none" stroke="${color}" stroke-width="1.5" vector-effect="non-scaling-stroke"/>`;
+}
+let risk = .42, sent = -.18, px = 1.0842;
+const steps = [
+  () => `<span class="d">[${new Date().toLocaleTimeString('fr-FR')}]</span> <span class="k">fetch</span> EURUSD=X · DXY · VIX · news <span class="g">✓</span>`,
+  () => { px += (Math.random() - .5) * .004; return `<span class="k">market</span> EUR/USD <span class="s">${px.toFixed(4)}</span> · ATR <span class="s">${(.5 + Math.random() * .3).toFixed(2)}%</span>`; },
+  () => `<span class="k">lstm</span>.forecast(σ<sub>t+1</sub>) → <span class="s">${(.45 + Math.random() * .35).toFixed(3)}%</span>`,
+  () => { sent = Math.max(-1, Math.min(1, sent + (Math.random() - .5) * .3)); return `<span class="k">finbert</span>.score(headlines[32]) → <span class="${sent < 0 ? 'b' : 'g'}">${fmt(sent)}</span>`; },
+  () => { risk = Math.max(.05, Math.min(.95, risk + (Math.random() - .5) * .16)); return `<span class="k">overlay</span>.risk_score = <span class="${risk > .6 ? 'b' : risk > .35 ? 'w' : 'g'}">${risk.toFixed(2)}</span>`; },
+  () => { const a = act(risk); return `<span class="k">ppo</span>.act(state∈ℝ⁸) → <span class="${a[1]}">${a[0]}</span> <span class="d">· macro_bias=${sent > .1 ? 'Buy' : sent < -.1 ? 'Sell' : 'Neutre'}</span>`; }
+];
+function act(r) { return r > .7 ? ['NEUTRALIZE', 'b', 'var(--bad)'] : r > .5 ? ['REDUCE', 'w', 'var(--warn)'] : r > .3 ? ['MAINTAIN', 's', 'var(--a1)'] : ['AUGMENT', 'g', 'var(--ok)']; }
+let si = 0;
+function tick() {
+  const line = document.createElement('div');
+  line.innerHTML = steps[si]();
+  line.style.opacity = 0; line.style.transform = 'translateY(6px)'; line.style.transition = 'all .4s cubic-bezier(.22,1,.36,1)';
+  log.appendChild(line); requestAnimationFrame(() => { line.style.opacity = 1; line.style.transform = 'none'; });
+  while (log.children.length > 9) log.removeChild(log.firstChild);
+  if (si === 5) {
+    const a = act(risk);
+    $('#mRisk').textContent = risk.toFixed(2);
+    $('#mSent').textContent = fmt(sent);
+    $('#mAct').textContent = a[0]; $('#mAct').style.color = a[2];
+    hist.r.push(risk); hist.s.push(sent); hist.a.push(1 - risk + (Math.random() - .5) * .1);
+    for (const k in hist) if (hist[k].length > 14) hist[k].shift();
+    spark('#spark', hist.r, '#fbbf24'); spark('#spark2', hist.s, '#5eead4'); spark('#spark3', hist.a, '#a5b4fc');
+    setGauge(risk);
+  }
+  si = (si + 1) % steps.length;
+  setTimeout(tick, si === 0 ? 1400 : 650);
+}
+for (let i = 0; i < 12; i++) { hist.r.push(.3 + Math.random() * .3); hist.s.push((Math.random() - .5) * .6); hist.a.push(.4 + Math.random() * .3); }
+spark('#spark', hist.r, '#fbbf24'); spark('#spark2', hist.s, '#5eead4'); spark('#spark3', hist.a, '#a5b4fc');
+setTimeout(tick, 900);
+
+/* gauge */
+let gaugeOn = false;
+function setGauge(v) {
+  if (!gaugeOn) return;
+  $('#gArc').style.strokeDashoffset = 182.2 * (1 - v);
+  $('#gVal').textContent = v.toFixed(2);
+  const a = act(v), tag = $('#gTag');
+  tag.textContent = a[0]; tag.style.color = a[2]; tag.style.background = 'color-mix(in srgb, ' + a[2] + ' 12%, transparent)';
+}
+
+/* console tilt */
+const con = $('#console');
+if (matchMedia('(pointer:fine)').matches) {
+  con.addEventListener('mousemove', e => { const r = con.getBoundingClientRect(); const x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5; con.style.transform = `perspective(1000px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg)`; });
+  con.addEventListener('mouseleave', () => con.style.transform = '');
+}
+
+/* ---------- marquee dupe ---------- */
+const tr = $('#track'); tr.innerHTML += tr.innerHTML;
+
+/* ---------- reveal + counters + bars ---------- */
+function count(el) {
+  const to = +el.dataset.count, suf = el.dataset.suffix || '', t0 = performance.now(), D = 1600;
+  (function f(t) { const p = Math.min(1, (t - t0) / D), e = 1 - Math.pow(1 - p, 4); el.textContent = Math.round(to * e) + suf; if (p < 1) requestAnimationFrame(f); })(t0);
+}
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (!e.isIntersecting) return;
+  const el = e.target; el.classList.add('in');
+  $$('[data-count]', el).forEach(count);
+  if (el.dataset.count) count(el);
+  $$('.bar i', el).forEach(b => b.style.width = b.dataset.w + '%');
+  if (el.classList.contains('feat')) { gaugeOn = true; setGauge(risk); }
+  io.unobserve(el);
+}), {threshold: .15, rootMargin: '0px 0px -40px 0px'});
+$$('.reveal').forEach(el => io.observe(el));
+$$('.hero-meta [data-count]').forEach(el => setTimeout(() => count(el), 1100));
+
+/* ---------- spotlight cards ---------- */
+$$('.card').forEach(c => c.addEventListener('pointermove', e => { const r = c.getBoundingClientRect(); c.style.setProperty('--mx', e.clientX - r.left + 'px'); c.style.setProperty('--my', e.clientY - r.top + 'px'); }));
+
+/* ---------- magnetic buttons ---------- */
+if (matchMedia('(pointer:fine)').matches) $$('.magnetic').forEach(b => {
+  b.addEventListener('mousemove', e => { const r = b.getBoundingClientRect(); b.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * .25}px,${(e.clientY - r.top - r.height / 2) * .35}px)`; });
+  b.addEventListener('mouseleave', () => b.style.transform = '');
+});
+
+/* ---------- project visuals ---------- */
+(function bars() {
+  const g = $('#bars1'); let s = '';
+  for (let i = 0; i < 16; i++) { const h = 20 + Math.abs(Math.sin(i * .9)) * 80 + (i % 3) * 8; const ok = i % 4 !== 2; s += `<rect x="${30 + i * 19}" y="${150 - h}" width="11" height="${h}" rx="3" fill="${ok ? 'rgba(94,234,212,.55)' : 'rgba(251,113,133,.6)'}"><animate attributeName="height" values="${h};${h * .7};${h}" dur="${3 + i % 4}s" repeatCount="indefinite"/><animate attributeName="y" values="${150 - h};${150 - h * .7};${150 - h}" dur="${3 + i % 4}s" repeatCount="indefinite"/></rect>`; }
+  g.innerHTML = s;
+})();
+(function candles() {
+  const g = $('#candles'); let s = '', p = 90;
+  for (let i = 0; i < 22; i++) {
+    const o = p, c = p + (Math.random() - .48) * 22; p = Math.max(30, Math.min(140, c));
+    const hi = Math.min(o, c) - Math.random() * 10, lo = Math.max(o, c) + Math.random() * 10, up = c < o;
+    const col = up ? '#5eead4' : '#fb7185', x = 12 + i * 16;
+    s += `<line x1="${x + 4}" x2="${x + 4}" y1="${hi}" y2="${lo}" stroke="${col}" stroke-opacity=".6"/><rect x="${x}" y="${Math.min(o, c)}" width="8" height="${Math.max(2, Math.abs(c - o))}" fill="${col}" fill-opacity=".75" rx="1"/>`;
+  }
+  g.innerHTML = s;
+})();
+
+/* ---------- filters ---------- */
+$('#filters').addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return;
+  $$('#filters button').forEach(x => x.classList.toggle('on', x === b));
+  const f = b.dataset.f;
+  $$('#grid .proj').forEach(p => { const show = f === 'all' || p.dataset.c.split(' ').includes(f); p.classList.toggle('hide', !show); if (show) { p.classList.add('in'); p.animate([{opacity: 0, transform: 'translateY(16px)'}, {opacity: 1, transform: 'none'}], {duration: 500, easing: 'cubic-bezier(.22,1,.36,1)'}); } });
+});
+
+/* ---------- command palette ---------- */
+const cmdk = $('#cmdk'), inp = $('#cmdkInput'), list = $('#cmdkList');
+const items = [
+  ['Navigation', '⌂', 'Accueil', '#top'], ['Navigation', '◎', 'À propos', '#about'], ['Navigation', '★', 'Projet phare — MacroRiskOverlay AI', '#work'],
+  ['Navigation', '▦', 'Projets', '#projects'], ['Navigation', '⚙', 'Expertise', '#skills'], ['Navigation', '↗', 'Parcours', '#path'], ['Navigation', '✉', 'Contact', '#contact'],
+  ['Liens', '⌥', 'Profil GitHub', 'https://github.com/RaphaelDeutou'], ['Liens', '⌥', 'Projet MLOps — Fraude', 'https://github.com/RaphaelDeutou/RaphaelDeutou-mlops_project'],
+  ['Liens', '⌥', 'Credit Approved', 'https://github.com/RaphaelDeutou/credit_approved']
+];
+let sel = 0, shown = [];
+function render() {
+  const q = inp.value.toLowerCase().trim();
+  shown = items.filter(i => i[2].toLowerCase().includes(q));
+  sel = Math.min(sel, Math.max(0, shown.length - 1));
+  let grp = '', h = '';
+  shown.forEach((it, i) => { if (it[0] !== grp) { grp = it[0]; h += `<small>${grp}</small>`; } h += `<div class="cmdk-item${i === sel ? ' sel' : ''}" data-i="${i}"><i>${it[1]}</i>${it[2]}<span>${it[3].startsWith('#') ? '↵' : '↗'}</span></div>`; });
+  list.innerHTML = h || '<div class="cmdk-item">Aucun résultat</div>';
+}
+function openK() { cmdk.classList.add('open'); inp.value = ''; sel = 0; render(); setTimeout(() => inp.focus(), 30); }
+function closeK() { cmdk.classList.remove('open'); }
+function go(it) { closeK(); if (!it) return; if (it[3].startsWith('#')) $(it[3]).scrollIntoView({behavior: 'smooth'}); else open(it[3], '_blank', 'noopener'); }
+addEventListener('keydown', e => {
+  if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); cmdk.classList.contains('open') ? closeK() : openK(); }
+  if (!cmdk.classList.contains('open')) return;
+  if (e.key === 'Escape') closeK();
+  if (e.key === 'ArrowDown') { e.preventDefault(); sel = (sel + 1) % shown.length; render(); }
+  if (e.key === 'ArrowUp') { e.preventDefault(); sel = (sel - 1 + shown.length) % shown.length; render(); }
+  if (e.key === 'Enter') go(shown[sel]);
+});
+inp.addEventListener('input', () => { sel = 0; render(); });
+list.addEventListener('click', e => { const it = e.target.closest('[data-i]'); if (it) go(shown[+it.dataset.i]); });
+list.addEventListener('mousemove', e => { const it = e.target.closest('[data-i]'); if (it && +it.dataset.i !== sel) { sel = +it.dataset.i; render(); } });
+cmdk.addEventListener('click', e => { if (e.target === cmdk) closeK(); });
+$('#openCmd').addEventListener('click', openK);
+})();
+</script>
+</body>
+</html>
