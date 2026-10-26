@@ -1,4 +1,4 @@
-# Raphaël Deutou — Portfolio
+# Raphaël Deutou · Portfolio
 
 Data Scientist & AI Engineer · Machine Learning · Deep Learning · NLP · MLOps
 
