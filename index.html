@@ -260,6 +260,39 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
 .cmdk-item span{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--dim)}
 .cmdk-item i{font-style:normal;width:24px;text-align:center}
 
+/* photo / certs / quote / contact */
+.pill .ph{width:22px;height:22px;border-radius:50%;object-fit:cover;border:1px solid var(--line2)}
+.b-photo{grid-column:span 2;grid-row:span 2;padding:0!important;min-height:380px}
+.b-photo>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 25%;filter:saturate(.9) contrast(1.05);transition:transform 1.2s var(--ease)}
+.b-photo:hover>img{transform:scale(1.04)}
+.b-photo .cap{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:22px 24px;background:linear-gradient(transparent,rgba(5,6,10,.92) 55%)}
+.b-photo .cap b{font-size:20px;letter-spacing:-.02em;display:block}
+.b-photo .cap small{color:var(--mu);font-size:13px;display:flex;align-items:center;gap:6px;margin-top:2px}
+.b-photo .ring{position:absolute;inset:0;z-index:1;background:linear-gradient(160deg,rgba(94,234,212,.18),transparent 40%,transparent 60%,rgba(240,171,252,.18));mix-blend-mode:screen;pointer-events:none}
+.certs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:56px}
+.cert{padding:24px;display:flex;gap:16px;align-items:flex-start}
+.cert .lg{width:44px;height:44px;flex-shrink:0;border-radius:12px;display:grid;place-items:center;font-weight:700;font-size:15px;border:1px solid var(--line2)}
+.cert h3{font-size:16.5px}
+.cert ul{list-style:none;margin-top:8px;display:flex;flex-direction:column;gap:5px}
+.cert li{font-size:13.5px;color:var(--mu)}
+.cert li span{font-family:var(--mono);font-size:11px;color:var(--dim);margin-left:6px}
+.quote{margin-top:16px;padding:40px 44px;display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:start}
+.quote .qm{font-family:var(--serif);font-size:110px;line-height:.7;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.quote p{font-size:clamp(18px,1.9vw,23px);line-height:1.5;letter-spacing:-.015em;color:var(--tx)}
+.quote p em{font-family:var(--serif);font-size:1.12em}
+.quote cite{display:block;margin-top:18px;font-style:normal;color:var(--mu);font-size:14px}
+.insight{margin-top:24px;padding:18px 20px;border-radius:14px;border:1px solid rgba(94,234,212,.25);background:rgba(94,234,212,.05);font-size:15px;color:var(--mu)}
+.insight b{color:var(--a1);font-weight:600}
+.contact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;max-width:760px;margin:44px auto 0;text-align:left}
+.cc{padding:22px;display:flex;align-items:center;gap:16px}
+.cc .ci{width:46px;height:46px;flex-shrink:0;border-radius:14px;display:grid;place-items:center;border:1px solid var(--line2);background:rgba(255,255,255,.03);transition:.3s var(--ease)}
+.cc .ci svg{width:20px;height:20px}
+.cc:hover .ci{color:#05060a;background:var(--a1);border-color:var(--a1)}
+.cc small{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+.cc b{font-weight:500;font-size:15px;overflow-wrap:anywhere}
+.live{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;padding:3px 9px;border-radius:999px;background:rgba(74,222,128,.1);color:var(--ok);border:1px solid rgba(74,222,128,.25);text-transform:none;letter-spacing:0}
+.live::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--ok)}
+
 /* ---------- responsive ---------- */
 @media (max-width:1000px){
   .hero .wrap{grid-template-columns:1fr}
@@ -267,6 +300,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
   .bento{grid-template-columns:repeat(2,1fr)}
   .b-intro,.b-code,.b-focus{grid-column:span 2}
   .b-intro{grid-row:auto}
+  .b-photo{grid-column:span 1;grid-row:span 2;min-height:360px}
+  .certs{grid-template-columns:1fr 1fr}
   .b-stat{grid-column:span 1}
   .feat-top{grid-template-columns:1fr;padding:32px}
   .pipeline{padding:28px 32px}
@@ -281,7 +316,11 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
   .hero-meta{gap:22px}
   .scroll-hint{display:none}
   .bento{grid-template-columns:1fr}
-  .b-intro,.b-code,.b-focus,.b-stat{grid-column:span 1}
+  .b-intro,.b-code,.b-focus,.b-stat,.b-photo{grid-column:span 1}
+  .b-photo{grid-row:auto;min-height:400px}
+  .certs,.contact-grid{grid-template-columns:1fr}
+  .quote{grid-template-columns:1fr;padding:28px 24px;gap:8px}
+  .quote .qm{font-size:80px}
   .grid,.skills{grid-template-columns:1fr}
   .feat-top{padding:24px}
   .kpis{grid-template-columns:1fr 1fr}
@@ -316,6 +355,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
     <a href="#work">Projets</a>
     <a href="#skills">Expertise</a>
     <a href="#path">Parcours</a>
+    <a href="#certs">Certifs</a>
   </div>
   <div class="nav-r">
     <button class="kbd-btn" id="openCmd" aria-label="Ouvrir la palette de commandes">Rechercher <kbd>Ctrl K</kbd></button>
@@ -328,22 +368,24 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
   <canvas id="net" aria-hidden="true"></canvas>
   <div class="wrap">
     <div>
-      <div class="pill fade" style="animation-delay:.1s"><span class="dot"></span>Ouvert aux opportunités Data &amp; IA <span class="tag">2026</span></div>
+      <div class="pill fade" style="animation-delay:.1s"><img class="ph" src="assets/raphael.jpg" alt=""><span class="dot"></span>Raphaël Deutou · Orléans, France <span class="tag">open to work</span></div>
       <h1>
         <span class="line"><span>Je transforme</span></span>
         <span class="line"><span>la donnée en</span></span>
         <span class="line"><span><span class="serif grad">décisions.</span></span></span>
       </h1>
-      <p class="lead fade" style="animation-delay:.5s">Data Scientist &amp; AI Engineer. Je conçois des systèmes d'IA <b>de bout en bout</b> — de la collecte des données au modèle en production — en mêlant <b>deep learning</b>, <b>NLP</b> et <b>MLOps</b>.</p>
+      <p class="lead fade" style="animation-delay:.5s">Data Scientist &amp; AI Engineer en Master Data &amp; IA. Je conçois des systèmes d'IA <b>de bout en bout</b> — de la collecte des données au modèle en production — en mêlant <b>deep learning</b>, <b>NLP</b> et <b>MLOps</b>.</p>
       <div class="role fade" style="animation-delay:.65s"><span class="d">&gt;</span> <span id="typed"></span><span class="caret"></span></div>
       <div class="cta fade" style="animation-delay:.8s">
         <a href="#work" class="btn btn-p magnetic">Voir mes projets <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+        <a href="https://www.linkedin.com/in/rapha%C3%ABl-deutou-064b61297" target="_blank" rel="noopener" class="btn btn-g magnetic"><svg viewBox="0 0 24 24" fill="currentColor" style="transform:none"><path d="M20.4 20.5h-3.6v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.7H9.3V9h3.4v1.6c.5-.9 1.6-1.8 3.4-1.8 3.6 0 4.3 2.4 4.3 5.5v6.2zM5.3 7.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2zM7.1 20.5H3.5V9h3.6v11.5z"/></svg>LinkedIn</a>
         <a href="https://github.com/RaphaelDeutou" target="_blank" rel="noopener" class="btn btn-g magnetic"><svg viewBox="0 0 24 24" fill="currentColor" style="transform:none"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.6 18.3 5 18.3 5c.7 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.5 11.5 0 0 0 23.5 12C23.5 5.7 18.3.5 12 .5z"/></svg>GitHub</a>
       </div>
       <div class="hero-meta fade" style="animation-delay:1s">
+        <div><b data-count="4" data-suffix="k+">0</b>abonnés LinkedIn</div>
         <div><b data-count="19">0</b>dépôts publics</div>
         <div><b data-count="5" data-suffix="M+">0</b>lignes traitées</div>
-        <div><b data-count="4">0</b>modèles orchestrés</div>
+        <div><b data-count="10">0</b>certifications</div>
       </div>
     </div>
 
@@ -363,7 +405,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
 <!-- MARQUEE -->
 <div class="marquee" aria-label="Technologies">
   <div class="track" id="track">
-    <span>Python</span><span>PyTorch</span><span>TensorFlow</span><span>scikit-learn</span><span>Hugging Face</span><span>FinBERT</span><span>LSTM</span><span>PPO · Stable-Baselines3</span><span>YOLOv8</span><span>CrewAI</span><span>FastAPI</span><span>Streamlit</span><span>MLflow</span><span>Docker</span><span>GitLab CI/CD</span><span>Pandas</span><span>SQL</span>
+    <span>Python</span><span>PyTorch</span><span>TensorFlow</span><span>scikit-learn</span><span>Hugging Face</span><span>FinBERT</span><span>LSTM</span><span>PPO · Stable-Baselines3</span><span>YOLOv8</span><span>CrewAI</span><span>FastAPI</span><span>Streamlit</span><span>MLflow</span><span>Docker</span><span>GitLab CI/CD</span><span>Power BI</span><span>Power Automate</span><span>Celonis</span><span>XGBoost</span><span>SHAP</span><span>Pandas</span><span>SQL</span>
   </div>
 </div>
 
@@ -374,21 +416,26 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
     <h2 class="reveal d1">Ingénieur de la donnée, <span class="serif grad">obsédé</span> par l'impact réel des modèles.</h2>
     <div class="bento">
       <div class="card b-intro reveal">
-        <p>Je ne m'arrête pas au notebook. J'aime <b>industrialiser</b> : pipelines reproductibles, modèles versionnés, APIs, monitoring de drift. Mon terrain de jeu : la <b>finance quantitative</b>, le <b>NLP</b> et les <b>agents IA</b> — là où un bon modèle change concrètement une décision.</p>
+        <p>J'ai commencé par le <b>développement web au Cameroun</b>, je suis passé par la <b>data en freelance</b>, et je construis aujourd'hui des systèmes d'IA pour la <b>finance</b>. Je ne m'arrête pas au notebook : j'aime <b>industrialiser</b>, rendre un modèle <b>interprétable</b> — et surtout savoir <b>quand il ne fonctionne pas</b>.</p>
         <div class="sig">
-          <div class="avatar">RD</div>
-          <div><b>Raphaël Deutou</b><small>Data Scientist · AI Engineer</small></div>
+          <div class="avatar"><img src="assets/raphael.jpg" alt="Raphaël Deutou"></div>
+          <div><b>Raphaël Deutou</b><small>Data Scientist · AI Engineer · Crédit Agricole d'Aquitaine</small></div>
         </div>
       </div>
-      <div class="card b-stat reveal d1">
+      <div class="card b-photo reveal d2">
+        <img src="assets/raphael.jpg" alt="Portrait de Raphaël Deutou" loading="lazy">
+        <div class="ring"></div>
+        <div class="cap"><b>Raphaël Deutou</b><small><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Orléans, Centre-Val de Loire</small></div>
+      </div>
+      <div class="card b-stat reveal">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 6-7"/></svg></div>
         <div class="num"><span data-count="12">0</span><span class="grad">y</span></div>
         <div class="lbl">d'historique backtesté sur le moteur de risque macro</div>
       </div>
-      <div class="card b-stat reveal d2">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 9h6v6H9z"/></svg></div>
-        <div class="num"><span data-count="100">0</span><span class="grad">%</span></div>
-        <div class="lbl">inférence locale &amp; offline — aucun appel modèle distant</div>
+      <div class="card b-stat reveal d1">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="12" width="4" height="9" rx="1"/><rect x="10" y="7" width="4" height="14" rx="1"/><rect x="17" y="3" width="4" height="18" rx="1"/></svg></div>
+        <div class="num"><span data-count="2">0</span><span class="grad"> apps</span></div>
+        <div class="lbl">déployées en ligne sur Streamlit Cloud, testables publiquement</div>
       </div>
       <div class="card b-code reveal d1">
 <pre><span class="c"># ma façon de travailler</span>
@@ -409,7 +456,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
           <div><span>Deep Learning</span><div class="bar"><i data-w="84"></i></div><em>84</em></div>
           <div><span>NLP &amp; LLM</span><div class="bar"><i data-w="80"></i></div><em>80</em></div>
           <div><span>MLOps</span><div class="bar"><i data-w="78"></i></div><em>78</em></div>
-          <div><span>Data Engineering</span><div class="bar"><i data-w="74"></i></div><em>74</em></div>
+          <div><span>BI &amp; Analytics</span><div class="bar"><i data-w="86"></i></div><em>86</em></div>
         </div>
       </div>
     </div>
@@ -425,14 +472,16 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
     <div class="feat reveal d2">
       <div class="feat-top">
         <div>
-          <span class="badge hot">★ Featured · Finance quantitative</span>
+          <span class="badge hot">★ Mémoire M2 · Raphy AI</span> <span class="live">Live</span>
           <h3>MacroRiskOverlay AI</h3>
-          <p>Système d'aide à la décision pour le trading Forex de position (EUR/USD). Il fusionne données de marché, prévision de volatilité par <b style="color:var(--tx)">LSTM</b>, sentiment des news financières via un <b style="color:var(--tx)">FinBERT fine-tuné</b>, signaux de stress macro et une couche de <b style="color:var(--tx)">reinforcement learning (PPO)</b> pour recommander chaque jour un ajustement de position.</p>
+          <p>Système d'aide à la décision pour le trading Forex de position (EUR/USD). Il fusionne données de marché, prévision de volatilité par <b style="color:var(--tx)">LSTM</b>, sentiment des news financières via un <b style="color:var(--tx)">FinBERT fine-tuné</b>, signaux de stress macro et une couche de <b style="color:var(--tx)">reinforcement learning (PPO)</b> pour recommander chaque jour un ajustement de position. Un <b style="color:var(--tx)">co-pilote macro</b>, pas un pilote automatique.</p>
+          <div class="insight"><b>Le vrai apprentissage —</b> les premières simulations étaient encourageantes. Soumis à un protocole <b>out-of-sample strict</b>, le résultat s'est inversé. J'ai construit tout le mémoire autour de cet écart : en ML appliqué à la finance, la difficulté n'est pas de faire fonctionner un modèle, c'est de savoir quand il ne fonctionne pas.</div>
           <div class="chips">
-            <span class="chip">PyTorch</span><span class="chip">LSTM</span><span class="chip">FinBERT</span><span class="chip">PPO</span><span class="chip">FastAPI</span><span class="chip">yfinance</span><span class="chip">Telegram Bot</span><span class="chip">Gemini</span>
+            <span class="chip">PyTorch</span><span class="chip">LSTM</span><span class="chip">FinBERT</span><span class="chip">PPO</span><span class="chip">FastAPI</span><span class="chip">yfinance</span><span class="chip">Stable-Baselines3</span><span class="chip">XGBoost</span><span class="chip">Streamlit</span><span class="chip">Telegram Bot</span>
           </div>
           <div class="cta" style="margin-top:28px">
-            <a href="#contact" class="btn btn-g btn-sm magnetic">Demander une démo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+            <a href="https://macroriskoverlayai.streamlit.app/" target="_blank" rel="noopener" class="btn btn-p btn-sm magnetic">Tester l'application <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+            <a href="#contact" class="btn btn-g btn-sm magnetic">Échanger sur le projet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
           </div>
         </div>
         <div class="kpis">
@@ -490,6 +539,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
       </div>
       <div class="filters reveal d2" id="filters">
         <button class="on" data-f="all">Tous</button>
+        <button data-f="bi">BI &amp; Analytics</button>
         <button data-f="ml">ML</button>
         <button data-f="dl">Deep Learning</button>
         <button data-f="nlp">NLP &amp; Agents</button>
@@ -498,6 +548,21 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
     </div>
 
     <div class="grid" id="grid">
+      <a class="card proj reveal" data-c="bi" href="https://www.linkedin.com/in/rapha%C3%ABl-deutou-064b61297/recent-activity/all/" target="_blank" rel="noopener">
+        <div class="vis"><svg viewBox="0 0 360 170" preserveAspectRatio="xMidYMid slice"><rect x="16" y="14" width="328" height="142" rx="10" fill="rgba(255,255,255,.02)" stroke="rgba(255,255,255,.08)"/><path d="M26 14h308a10 10 0 0 1 10 10v10H16V24a10 10 0 0 1 10-10z" fill="rgba(242,200,17,.12)"/><text x="28" y="28" font-family="JetBrains Mono" font-size="9" fill="#f2c811">SUPER MARKET SALES · POWER BI</text><g font-family="Inter Tight"><rect x="28" y="44" width="70" height="36" rx="6" fill="rgba(255,255,255,.04)"/><text x="36" y="58" font-size="8" fill="#9aa3b5">Total Sales</text><text x="36" y="73" font-size="13" font-weight="700" fill="#eef1f7">322,9k</text><rect x="106" y="44" width="70" height="36" rx="6" fill="rgba(255,255,255,.04)"/><text x="114" y="58" font-size="8" fill="#9aa3b5">Gross Income</text><text x="114" y="73" font-size="13" font-weight="700" fill="#eef1f7">15,4k</text></g><g id="pbiBars"></g><circle cx="290" cy="84" r="30" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="12"/><circle cx="290" cy="84" r="30" fill="none" stroke="#f2c811" stroke-width="12" stroke-dasharray="100 189" transform="rotate(-90 290 84)"/><circle cx="290" cy="84" r="30" fill="none" stroke="#5eead4" stroke-width="12" stroke-dasharray="60 189" stroke-dashoffset="-100" transform="rotate(-90 290 84)"/><circle cx="290" cy="84" r="30" fill="none" stroke="#818cf8" stroke-width="12" stroke-dasharray="29 189" stroke-dashoffset="-160" transform="rotate(-90 290 84)"/></svg></div>
+        <div class="body"><div class="meta"><span>Business Intelligence</span><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
+          <h3>Dashboard Power BI — Super Market Sales</h3>
+          <p>Dashboard interactif d'aide à la décision : tendances de ventes par branche, produit et période, performance Members vs Normal, KPI de rentabilité (Total Sales, COGS, Tax 5 %, Gross Income).</p>
+          <div class="chips"><span class="chip">Power BI</span><span class="chip">DAX</span><span class="chip">Data storytelling</span></div></div>
+      </a>
+
+      <a class="card proj reveal d1" data-c="bi ml" href="https://www.linkedin.com/in/rapha%C3%ABl-deutou-064b61297/recent-activity/all/" target="_blank" rel="noopener">
+        <div class="vis"><svg viewBox="0 0 360 170" preserveAspectRatio="xMidYMid slice"><g id="pcaDots"></g><g stroke="rgba(255,255,255,.15)"><line x1="40" y1="150" x2="330" y2="150"/><line x1="40" y1="20" x2="40" y2="150"/></g><line x1="60" y1="135" x2="320" y2="35" stroke="#f0abfc" stroke-width="1.5" stroke-dasharray="4 4"/><text x="306" y="164" font-family="JetBrains Mono" font-size="9" fill="#5d6578">PC1</text><text x="12" y="28" font-family="JetBrains Mono" font-size="9" fill="#5d6578">PC2</text></svg></div>
+        <div class="body"><div class="meta"><span>Statistiques · EDA</span><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
+          <h3>Super Market Sales — Analyse statistique</h3>
+          <p>Nettoyage, tests de normalité (Shapiro-Wilk), tests non paramétriques (Mann-Whitney, Kruskal-Wallis), corrélations Spearman / Kendall et ACP à 3 composantes pour isoler les leviers de performance.</p>
+          <div class="chips"><span class="chip">Python</span><span class="chip">SciPy</span><span class="chip">ACP</span><span class="chip">Seaborn</span></div></div>
+      </a>
       <a class="card proj reveal" data-c="ops ml" href="https://github.com/RaphaelDeutou/RaphaelDeutou-mlops_project" target="_blank" rel="noopener">
         <div class="vis"><svg viewBox="0 0 360 170" preserveAspectRatio="xMidYMid slice"><g fill="none" stroke="rgba(94,234,212,.5)"><rect x="40" y="60" width="70" height="50" rx="10"/><rect x="145" y="60" width="70" height="50" rx="10" stroke="rgba(129,140,248,.6)"/><rect x="250" y="60" width="70" height="50" rx="10" stroke="rgba(240,171,252,.6)"/><path d="M110 85h35M215 85h35" stroke-dasharray="4 5" class="flowsm"/></g><g font-family="JetBrains Mono" font-size="10" fill="#9aa3b5" text-anchor="middle"><text x="75" y="89">train</text><text x="180" y="89">mlflow</text><text x="285" y="89">api</text></g><text x="180" y="140" font-family="JetBrains Mono" font-size="10" fill="#5d6578" text-anchor="middle">docker compose up --build</text></svg></div>
         <div class="body"><div class="meta"><span>MLOps · M2</span><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
@@ -506,12 +571,12 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
           <div class="chips"><span class="chip">Docker</span><span class="chip">MLflow</span><span class="chip">GitLab CI</span><span class="chip">FastAPI</span></div></div>
       </a>
 
-      <a class="card proj reveal d1" data-c="ml" href="https://github.com/RaphaelDeutou/credit_approved" target="_blank" rel="noopener">
+      <a class="card proj reveal d1" data-c="ml" href="https://creditapproved.streamlit.app/" target="_blank" rel="noopener">
         <div class="vis"><svg viewBox="0 0 360 170" preserveAspectRatio="xMidYMid slice"><g id="bars1"></g></svg></div>
-        <div class="body"><div class="meta"><span>Scoring · Fintech</span><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
+        <div class="body"><div class="meta"><span>Credit scoring <span class="live" style="font-size:10px;margin-left:6px">Live</span></span><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
           <h3>Credit Approved</h3>
-          <p>Application d'analyse de dossiers de crédit : prédiction individuelle, scoring batch sur CSV et dashboard, adossée à une API FastAPI.</p>
-          <div class="chips"><span class="chip">scikit-learn</span><span class="chip">Streamlit</span><span class="chip">FastAPI</span></div></div>
+          <p>Accord ou refus de crédit : EDA, feature engineering orienté risque, SMOTE, benchmark LogReg / RF / XGBoost / SVM, seuil de décision optimisé, AUC · KS · PR et explicabilité SHAP. Déployé sur Streamlit Cloud.</p>
+          <div class="chips"><span class="chip">XGBoost</span><span class="chip">SHAP</span><span class="chip">SMOTE</span><span class="chip">Streamlit</span></div></div>
       </a>
 
       <a class="card proj reveal d2" data-c="nlp ml" href="https://github.com/RaphaelDeutou/Projet-Spe-IA-4DIA" target="_blank" rel="noopener">
@@ -545,6 +610,14 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
           <p>Modélisation de séries temporelles financières : feature engineering, modèles prédictifs et évaluation sur données de marché.</p>
           <div class="chips"><span class="chip">Pandas</span><span class="chip">Time Series</span><span class="chip">Jupyter</span></div></div>
       </a>
+
+      <a class="card proj reveal" data-c="web" href="https://github.com/RaphaelDeutou/Archeo_it_Project" target="_blank" rel="noopener">
+        <div class="vis"><svg viewBox="0 0 360 170" preserveAspectRatio="xMidYMid slice"><rect x="60" y="22" width="240" height="132" rx="10" fill="rgba(255,255,255,.03)" stroke="rgba(255,255,255,.12)"/><circle cx="76" cy="36" r="3" fill="#ff5f57"/><circle cx="86" cy="36" r="3" fill="#febc2e"/><circle cx="96" cy="36" r="3" fill="#28c840"/><rect x="76" y="54" width="120" height="10" rx="3" fill="rgba(129,140,248,.5)"/><rect x="76" y="72" width="180" height="6" rx="3" fill="rgba(255,255,255,.1)"/><rect x="76" y="84" width="150" height="6" rx="3" fill="rgba(255,255,255,.1)"/><rect x="76" y="104" width="60" height="36" rx="5" fill="rgba(94,234,212,.15)"/><rect x="144" y="104" width="60" height="36" rx="5" fill="rgba(240,171,252,.15)"/><rect x="212" y="104" width="60" height="36" rx="5" fill="rgba(129,140,248,.15)"/></svg></div>
+        <div class="body"><div class="meta"><span>Web · École IT</span><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
+          <h3>Archéo-IT</h3>
+          <p>Site web conçu pour augmenter la visibilité de l'association Archéo-IT — projet intermédiaire réalisé à l'École IT.</p>
+          <div class="chips"><span class="chip">PHP</span><span class="chip">JavaScript</span><span class="chip">MySQL</span></div></div>
+      </a>
     </div>
     <div style="text-align:center;margin-top:40px" class="reveal">
       <a href="https://github.com/RaphaelDeutou?tab=repositories" target="_blank" rel="noopener" class="btn btn-g magnetic">Tous les dépôts sur GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
@@ -561,13 +634,13 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
     <div class="skills">
       <div class="card skill reveal">
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></div>
-        <h3>Data</h3><p class="muted">Collecter, nettoyer, comprendre.</p>
-        <ul><li>Python · Pandas · NumPy</li><li>SQL · APIs financières</li><li>Feature engineering</li><li>Data viz · Statistiques</li></ul>
+        <h3>Data &amp; BI</h3><p class="muted">Collecter, analyser, raconter.</p>
+        <ul><li>Python · Pandas · SQL</li><li>Power BI · DAX · Excel</li><li>Celonis · Process mining</li><li>Power Automate</li><li>Tests statistiques · ACP</li></ul>
       </div>
       <div class="card skill reveal d1">
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="5" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><path d="M7 6.5 10 11M7 17.5l3-4.5M14 12h3"/></svg></div>
         <h3>Machine &amp; Deep Learning</h3><p class="muted">Modéliser ce qui compte.</p>
-        <ul><li>scikit-learn · XGBoost</li><li>PyTorch · TensorFlow</li><li>LSTM · CNN · YOLO</li><li>Reinforcement Learning</li></ul>
+        <ul><li>scikit-learn · XGBoost</li><li>PyTorch · TensorFlow</li><li>LSTM · CNN · YOLO</li><li>RL · Stable-Baselines3</li><li>SHAP · interprétabilité</li></ul>
       </div>
       <div class="card skill reveal d2">
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 10h8M8 13h5"/></svg></div>
@@ -590,25 +663,43 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
     <h2 class="reveal d1">Une trajectoire <span class="serif grad">construite</span> projet après projet.</h2>
     <div class="tl">
       <div class="tl-item reveal">
-        <div class="tl-date">2026 · Aujourd'hui</div>
-        <div><h3>Master Data &amp; Intelligence Artificielle</h3><h4>Mémoire — « L'IA comme outil de gestion »</h4>
-        <p>Recherche appliquée sur l'IA d'aide à la décision : overlay de risque macro pour le trading et agents IA d'optimisation de candidatures. MLOps : industrialisation d'un modèle de détection de fraude.</p></div>
+        <div class="tl-date">2026 — 2027</div>
+        <div><h3>Crédit Agricole d'Aquitaine</h3><h4>Expérience en cours · Banque &amp; Data</h4>
+        <p>En parallèle d'un Master Bac+5 (titre RNCP niveau 7) à CODA — École d'informatique : la data et l'IA au service du monde bancaire.</p></div>
       </div>
       <div class="tl-item reveal">
-        <div class="tl-date">5ᵉ année</div>
-        <div><h3>Deep Learning avancé</h3><h4>Vision, séquences &amp; modèles génératifs</h4>
-        <p>Réseaux convolutifs, modèles séquentiels, détection d'objets temps réel avec YOLOv8 et pratiques d'entraînement à grande échelle.</p></div>
+        <div class="tl-date">2025 — 2026</div>
+        <div><h3>M2 Data &amp; Intelligence Artificielle</h3><h4>École IT · Olivet — Mémoire « Raphy AI »</h4>
+        <p>Système de gestion du risque Forex (LSTM, FinBERT, PPO) évalué avec un protocole out-of-sample strict. Industrialisation MLOps d'un modèle de détection de fraude, deep learning, IA conversationnelle.</p></div>
       </div>
       <div class="tl-item reveal">
-        <div class="tl-date">4ᵉ année</div>
-        <div><h3>Spécialisation Intelligence Artificielle</h3><h4>Machine learning &amp; IA conversationnelle</h4>
-        <p>Chatbot de réservation de vols avec prédiction de prix sur plus de 5 millions de lignes, scoring de crédit, statistiques inférentielles.</p></div>
+        <div class="tl-date">2024</div>
+        <div><h3>Data Analytics &amp; Process Mining</h3><h4>Freelance data · Google · Celonis</h4>
+        <p>Analyses exploratoires, dashboards Power BI, certifications Google Data Analytics et Celonis. Bénévole à l'accueil de l'épicerie solidaire Ésope pendant 6 mois.</p></div>
       </div>
       <div class="tl-item reveal" style="padding-bottom:0">
         <div class="tl-date">Les débuts</div>
-        <div><h3>Développement web &amp; logiciel</h3><h4>PHP · JavaScript · Angular</h4>
-        <p>Applications full-stack (vente aux enchères, CRUD, site pour l'association Archéo-IT) — une base solide pour livrer des produits data utilisables.</p></div>
+        <div><h3>Développement web</h3><h4>Cameroun · PHP · JavaScript · Angular</h4>
+        <p>Applications full-stack (vente aux enchères, CRUD, site Archéo-IT) — une base solide pour livrer des produits data réellement utilisables.</p></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section class="sec" id="certs" style="padding-top:40px">
+  <div class="wrap">
+    <span class="eyebrow reveal">Certifications &amp; recommandations</span>
+    <h2 class="reveal d1">Validé, <span class="serif grad">certifié</span>, recommandé.</h2>
+    <div class="certs">
+      <div class="card cert reveal"><div class="lg" style="color:#8ab4f8;background:rgba(138,180,248,.08)">G</div><div><h3>Google Data Analytics</h3><ul><li>Des données, des données, partout<span>2024</span></li><li>Poser des questions pour décider<span>2024</span></li><li>Préparer les données pour l'exploration<span>2024</span></li></ul></div></div>
+      <div class="card cert reveal d1"><div class="lg" style="color:#5eead4;background:rgba(94,234,212,.08)">C</div><div><h3>Celonis Process Mining</h3><ul><li>Celonis Foundations<span>2024</span></li><li>Build Analyses<span>2024</span></li><li>Review and Interpret Analyses<span>2024</span></li></ul></div></div>
+      <div class="card cert reveal d2"><div class="lg" style="color:#a5b4fc;background:rgba(129,140,248,.08)">M</div><div><h3>Microsoft</h3><ul><li>Power Automate for desktop<span>2026</span></li><li>MOS PowerPoint Associate<span>2023</span></li><li>TOSA PowerPoint<span>2023</span></li></ul></div></div>
+    </div>
+    <div class="card quote reveal">
+      <div class="qm">“</div>
+      <div><p>Raphaël s'est distingué par son <em>implication</em>, son sérieux et sa participation active aux travaux proposés. […] Je recommande Raphaël à toute organisation souhaitant s'appuyer sur un profil <em>engagé, fiable</em> et capable de contribuer positivement à la réussite d'une équipe.</p>
+      <cite><b style="color:var(--tx)">Daniel Coutinho</b> — Intervenant Éthique &amp; Intelligence Économique · École IT, Olivet</cite></div>
     </div>
   </div>
 </section>
@@ -619,12 +710,15 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
   <div class="wrap">
     <span class="eyebrow reveal">Contact</span>
     <h2 class="reveal d1">Construisons<br><span class="serif grad">quelque chose.</span></h2>
-    <p class="sub reveal d2">Stage, alternance, CDI ou projet freelance en Data / IA — je suis à l'écoute. Parlons de vos données.</p>
+    <p class="sub reveal d2">Data Science, IA, BI ou finance quantitative — CDI, alternance ou mission freelance : parlons de vos données.</p>
     <div class="cta reveal d3">
-      <a href="https://github.com/RaphaelDeutou" target="_blank" rel="noopener" class="btn btn-p magnetic">Me contacter via GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+      <a href="mailto:deutouraphael@gmail.com" class="btn btn-p magnetic">M'écrire un e-mail <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
     </div>
-    <div class="socials reveal d4">
-      <a href="https://github.com/RaphaelDeutou" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.6 18.3 5 18.3 5c.7 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.5 11.5 0 0 0 23.5 12C23.5 5.7 18.3.5 12 .5z"/></svg></a>
+    <div class="contact-grid">
+      <a class="card cc reveal" href="https://www.linkedin.com/in/rapha%C3%ABl-deutou-064b61297" target="_blank" rel="noopener"><span class="ci"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.4 20.5h-3.6v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.7H9.3V9h3.4v1.6c.5-.9 1.6-1.8 3.4-1.8 3.6 0 4.3 2.4 4.3 5.5v6.2zM5.3 7.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2zM7.1 20.5H3.5V9h3.6v11.5z"/></svg></span><span><small>LinkedIn</small><b>Raphaël Deutou</b></span></a>
+      <a class="card cc reveal d1" href="mailto:deutouraphael@gmail.com"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m3 6 9 7 9-7"/></svg></span><span><small>Gmail</small><b>deutouraphael@gmail.com</b></span></a>
+      <!--PHONE-->
+      <a class="card cc reveal d2" href="https://github.com/RaphaelDeutou" target="_blank" rel="noopener"><span class="ci"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.6 18.3 5 18.3 5c.7 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.5 11.5 0 0 0 23.5 12C23.5 5.7 18.3.5 12 .5z"/></svg></span><span><small>GitHub</small><b>RaphaelDeutou</b></span></a>
     </div>
   </div>
 </section>
@@ -847,6 +941,17 @@ if (matchMedia('(pointer:fine)').matches) $$('.magnetic').forEach(b => {
   g.innerHTML = s;
 })();
 
+(function pbi() {
+  const g = $('#pbiBars'); let s = '';
+  [38, 52, 44, 60, 48, 66, 56].forEach((h, i) => s += `<rect x="${32 + i * 20}" y="${146 - h}" width="12" height="${h}" rx="2" fill="${i === 5 ? '#f2c811' : 'rgba(242,200,17,.35)'}"/>`);
+  g.innerHTML = s;
+})();
+(function pca() {
+  const g = $('#pcaDots'); let s = '';
+  for (let i = 0; i < 70; i++) { const t = Math.random(), x = 60 + t * 260, y = 135 - t * 100 + (Math.random() - .5) * 46; s += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="2.6" fill="${['#5eead4', '#818cf8', '#f0abfc'][i % 3]}" fill-opacity=".7"/>`; }
+  g.innerHTML = s;
+})();
+
 /* ---------- filters ---------- */
 $('#filters').addEventListener('click', e => {
   const b = e.target.closest('button'); if (!b) return;
@@ -859,8 +964,8 @@ $('#filters').addEventListener('click', e => {
 const cmdk = $('#cmdk'), inp = $('#cmdkInput'), list = $('#cmdkList');
 const items = [
   ['Navigation', '⌂', 'Accueil', '#top'], ['Navigation', '◎', 'À propos', '#about'], ['Navigation', '★', 'Projet phare — MacroRiskOverlay AI', '#work'],
-  ['Navigation', '▦', 'Projets', '#projects'], ['Navigation', '⚙', 'Expertise', '#skills'], ['Navigation', '↗', 'Parcours', '#path'], ['Navigation', '✉', 'Contact', '#contact'],
-  ['Liens', '⌥', 'Profil GitHub', 'https://github.com/RaphaelDeutou'], ['Liens', '⌥', 'Projet MLOps — Fraude', 'https://github.com/RaphaelDeutou/RaphaelDeutou-mlops_project'],
+  ['Navigation', '▦', 'Projets', '#projects'], ['Navigation', '⚙', 'Expertise', '#skills'], ['Navigation', '↗', 'Parcours', '#path'], ['Navigation', '✓', 'Certifications', '#certs'], ['Navigation', '✉', 'Contact', '#contact'],
+  ['Liens', '⌥', 'Profil GitHub', 'https://github.com/RaphaelDeutou'], ['Liens', 'in', 'LinkedIn', 'https://www.linkedin.com/in/rapha%C3%ABl-deutou-064b61297'], ['Liens', '▶', 'Démo live — MacroRiskOverlay AI', 'https://macroriskoverlayai.streamlit.app/'], ['Liens', '▶', 'Démo live — Credit Approved', 'https://creditapproved.streamlit.app/'], ['Liens', '@', 'Envoyer un e-mail', 'mailto:deutouraphael@gmail.com'], ['Liens', '⌥', 'Projet MLOps — Fraude', 'https://github.com/RaphaelDeutou/RaphaelDeutou-mlops_project'],
   ['Liens', '⌥', 'Credit Approved', 'https://github.com/RaphaelDeutou/credit_approved']
 ];
 let sel = 0, shown = [];
@@ -874,7 +979,7 @@ function render() {
 }
 function openK() { cmdk.classList.add('open'); inp.value = ''; sel = 0; render(); setTimeout(() => inp.focus(), 30); }
 function closeK() { cmdk.classList.remove('open'); }
-function go(it) { closeK(); if (!it) return; if (it[3].startsWith('#')) $(it[3]).scrollIntoView({behavior: 'smooth'}); else open(it[3], '_blank', 'noopener'); }
+function go(it) { closeK(); if (!it) return; if (it[3].startsWith('mailto:')) { location.href = it[3]; return; } if (it[3].startsWith('#')) $(it[3]).scrollIntoView({behavior: 'smooth'}); else open(it[3], '_blank', 'noopener'); }
 addEventListener('keydown', e => {
   if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); cmdk.classList.contains('open') ? closeK() : openK(); }
   if (!cmdk.classList.contains('open')) return;
